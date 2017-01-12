@@ -1,0 +1,17 @@
+[core]
+    autocrlf = input
+
+[user]
+	email = miaoksi@qq.com
+	name = miaomiao
+
+[alias]
+    adog = log --color --graph --oneline --decorate --all
+    co = checkout
+    df = diff
+    po = push origin
+    pr = pull --rebase
+    pu = pull
+    sb = status -sb
+    st = status
+    sta = status

@@ -33,9 +33,10 @@ endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " -> vim-airline begin
-let g:airline_theme='light'
+let g:airline_theme='simple'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 " --- Plugin End ---
-
 set number
 set ts=4
 set sts=4

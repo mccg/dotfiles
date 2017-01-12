@@ -4,8 +4,8 @@ Development configs.
 
 Includes:
 * vimrc
-* bashrc
+* bashrc_gem
 * gitconfig
 * iterm2-colorscheme
-* mac-terminal-colorscheme
+* mb-terminal-colorscheme
 * deploy configs bash.

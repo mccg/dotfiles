@@ -1,17 +1,17 @@
 [core]
-    autocrlf = input
+	autocrlf = input
 [user]
 	email = mcceztau@gmail.com
 	name = miaocc
 [alias]
-    adog = log --color --graph --oneline --decorate --all
-    co = checkout
-    df = diff
-    po = push origin
-    pr = pull --rebase
-    pu = pull
-    sb = status -sb
-    st = status
-    sta = status
+	adog = log --color --graph --oneline --decorate --all
+	co = checkout
+	df = diff
+	po = push origin
+	pr = pull --rebase
+	pu = pull
+	sb = status -sb
+	st = status
+	sta = status
 [push]
-	default = simple
+	default = matching

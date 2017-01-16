@@ -50,7 +50,7 @@ deploy_bashgem () {
 
 install_ack () {
   if [ "$1"x == "CentOS"x ]; then
-    sudo yum install epel-release
+    sudo yum install epel-release -y
     sudo yum install ack -y
   elif [ "$1"x == "MacOSX"x ]; then
     brew install ack

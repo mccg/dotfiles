@@ -27,3 +27,5 @@ alias vimbashrc='vim ~/.bashrc'
 alias vimbashprofile='vim ~/.bash_profile'
 
 alias pingbaidu="ping www.baidu.com"
+alias sag='/usr/bin/ssh-agent bash'
+alias sad='/usr/bin/ssh-add'

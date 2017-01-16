@@ -1,10 +1,8 @@
 [core]
     autocrlf = input
-
 [user]
 	email = mcceztau@gmail.com
-	name = miaomiao
-
+	name = miaocc
 [alias]
     adog = log --color --graph --oneline --decorate --all
     co = checkout
@@ -15,3 +13,5 @@
     sb = status -sb
     st = status
     sta = status
+[push]
+	default = simple

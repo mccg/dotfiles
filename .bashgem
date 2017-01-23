@@ -20,6 +20,7 @@ alias dirs='dirs -v'
 alias pd='pushd'
 alias cd2='cd ../..'
 alias cd3='cd ../../..'
+alias top='top -M'
 alias gitadog='git log --oneline --all --decorate --graph'
 
 alias vimrc='vim ~/.vimrc'

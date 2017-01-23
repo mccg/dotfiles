@@ -105,7 +105,7 @@ deploy_gitconfig () {
   if [ -f ~/.gitconfig ]; then
     echo " |--- ~/.gitconfig existed. Do you want to overwrite?"
     choose_yes_or_no
-    [ "$?"x == "no" ] && echo " | --- deploy .gitconfig aborted." && exit 1
+    [ $? -eq 0 ] && echo " | --- deploy .gitconfig aborted." && exit 1
   fi
   echo "Do you want to set git user name and email individually?"
   choose_yes_or_no

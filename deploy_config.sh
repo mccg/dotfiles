@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 pre_define () {
   sys_names="CentOS \
@@ -143,19 +143,20 @@ main_func () {
         deploy_vimrc
         ;;
       h)
+        # echo "-h get"
         echo -e "\n\033[44;37m Help:  \033[0m"
         echo " -a           : do all things by default without asking."
         echo " -b           : deploy bashgem."
         echo " -n <name>    : choose system you are deploying. Default is CentOS."
         echo " -v           : deploy vimrc."
         echo " -g           : deploy gitconfig."
-        echo -e "\n  Example       : sh deploy_config.sh -n CentOS -b -v -g"
-        echo -e "\n                : sh deploy_config.sh -bv"
-        echo -e "\n  Quick Example : sh deploy_config.sh -a\n"
+        echo -e "\n  Example       : ./deploy_config.sh -n CentOS -b -v -g"
+        echo -e "\n                : ./deploy_config.sh -bv"
+        echo -e "\n  Quick Example : ./deploy_config.sh -a\n"
         exit 1
         ;;
       *)
-        echo "Run: sh deploy_config.sh -h"
+        echo "Run: ./deploy_config.sh -h"
         exit 1
     esac
   done

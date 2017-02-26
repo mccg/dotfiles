@@ -12,7 +12,7 @@ Development configs.
 
 ## How to deploy:
 ```shell
-git clone repo_url dotfiles_m
+git clone https://github.com/mccgit/dotfiles.git dotfiles_m
 cd dotfiles_m
 ./deploy_config.sh -h
 ```

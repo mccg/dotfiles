@@ -150,13 +150,13 @@ main_func () {
         echo " -n <name>    : choose system you are deploying. Default is CentOS."
         echo " -v           : deploy vimrc."
         echo " -g           : deploy gitconfig."
-        echo -e "\n  Example       : ./deploy_config.sh -n CentOS -b -v -g"
-        echo -e "\n                : ./deploy_config.sh -bv"
-        echo -e "\n  Quick Example : ./deploy_config.sh -a\n"
+        echo -e "\n  Example       : ./setup_configs.sh -n CentOS -b -v -g"
+        echo -e "\n                : ./setup_configs.sh -bv"
+        echo -e "\n  Quick Example : ./setup_configs.sh -a\n"
         exit 1
         ;;
       *)
-        echo "Run: ./deploy_config.sh -h"
+        echo "Run: ./setup_configs.sh -h"
         exit 1
     esac
   done

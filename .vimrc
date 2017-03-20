@@ -46,7 +46,6 @@ set expandtab
 set mouse=a
 set nowrap
 set hlsearch incsearch
-set statusline=\[%4l/%4L\]%=%y
 set showmode showmatch
 set autoindent
 set smartindent
@@ -59,6 +58,8 @@ let mapleader=','
 
 inoremap <c-j> <Right><esc>
 vnoremap <c-j> <esc>
+inoremap <c-f> <Right><esc>
+vnoremap <c-f> <esc>
 inoremap <c-d> <esc>ddi
 inoremap <c-p> <esc>pi
 nnoremap <c-n> :NERDTree<cr>
@@ -70,6 +71,9 @@ nnoremap <C-l> 8zl
 inoremap <C-l> <esc>8zli
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>v :set mouse=v<cr>
+nnoremap <leader>a :set mouse=a<cr>
+nnoremap <leader>p :set paste<cr>
+nnoremap <leader>n :set nopaste<cr>
 inoremap <leader>m <esc>d0i<bs><del>
 
 " Erb using

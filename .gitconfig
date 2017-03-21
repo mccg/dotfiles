@@ -9,8 +9,10 @@
 	df = diff
 	po = push origin
 	pr = pull --rebase
+	pro = pull --rebase origin
 	pu = pull
 	sb = status -sb
+	sh = stash
 	st = status
 	sta = status
 [push]

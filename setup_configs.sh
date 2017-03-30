@@ -2,7 +2,7 @@
 
 pre_define () {
   sys_names="CentOS \
-             MacOSX \
+             MacOS \
              Ubuntu \
              None-of-above"
   sys_name="CentOS"
@@ -52,7 +52,7 @@ install_ack () {
   if [ "$1"x == "CentOS"x ]; then
     sudo yum install epel-release -y
     sudo yum install ack -y
-  elif [ "$1"x == "MacOSX"x ]; then
+  elif [ "$1"x == "MacOS"x ]; then
     brew install ack
   elif [ "$1"x == "Ubuntu"x ]; then
     sudo apt-get install ack-grep -y
@@ -148,11 +148,13 @@ main_func () {
         echo " -a           : do all things by default without asking."
         echo " -b           : deploy bashgem."
         echo " -n <name>    : choose system you are deploying. Default is CentOS."
+        echo "                supported system names: [ CentOS, MacOS, Ubuntu ]"
         echo " -v           : deploy vimrc."
         echo " -g           : deploy gitconfig."
-        echo -e "\n  Example       : ./setup_configs.sh -n CentOS -b -v -g"
-        echo -e "\n                : ./setup_configs.sh -bv"
-        echo -e "\n  Quick Example : ./setup_configs.sh -a\n"
+        echo "-------------------------------------------------------------------"
+        echo -e "\n     Example <1> :  ./setup_configs.sh -n CentOS -b -v -g"
+        echo -e "\n     Example <2> :  ./setup_configs.sh -bv"
+        echo -e "\n   Quick Example :  ./setup_configs.sh -a\n"
         exit 1
         ;;
       *)

@@ -145,7 +145,8 @@ main_func () {
       h)
         # echo "-h get"
         echo -e "\n\033[44;37m Help:  \033[0m"
-        echo " -a           : do all things by default without asking."
+        echo " -a           : do all things by default without asking. Useful if"
+        echo "                it's the first time setup configs in CentOS."
         echo " -b           : deploy bashgem."
         echo " -n <name>    : choose system you are deploying. Default is CentOS."
         echo "                supported system names: [ CentOS, MacOS, Ubuntu ]"

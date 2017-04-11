@@ -5,21 +5,21 @@ parse_git_branch() {
 }
 
 watch2 () {
-WATCH2_N=`printenv WATCH2_N`
-[ ${WATCH2_N} ] || WATCH2_N=3
-let watch2_executed_times=0
-while sleep $WATCH2_N;
-do
-  temp_file=$(mktemp)
-  let watch2_executed_times=watch2_executed_times+1 
-  echo -e "[watch2] : "`date "+%F %T %Z %z"` >> ${temp_file}
-  echo -e "[watch2] : command : "$@ >> ${temp_file}
-  $@ >> ${temp_file} 2>&1
-  echo -e "\n[watch2] : ${watch2_executed_times} times executed." >> ${temp_file}
-  clear
-  cat $temp_file
-  rm -f $temp_file
-done
+  WATCH2_N=`printenv WATCH2_N`
+  [ ${WATCH2_N} ] || WATCH2_N=3
+  let watch2_executed_times=0
+  while sleep $WATCH2_N;
+  do
+    temp_file=$(mktemp)
+    let watch2_executed_times=watch2_executed_times+1 
+    echo -e "[watch2] : "`date "+%F %T %Z %z"` >> ${temp_file}
+    echo -e "[watch2] : command : "$@ >> ${temp_file}
+    $@ >> ${temp_file} 2>&1
+    echo -e "\n[watch2] : ${watch2_executed_times} times executed." >> ${temp_file}
+    clear
+    cat $temp_file
+    rm -f $temp_file
+  done
 }
 
 export PS1="[\u@\h \w]\033[32m\]\$(parse_git_branch)\033[0m\]\n$ "
@@ -39,7 +39,6 @@ alias dirs='dirs -v'
 alias pd='pushd'
 alias cd2='cd ../..'
 alias cd3='cd ../../..'
-alias top='top -M'
 alias gitadog='git log --oneline --all --decorate --graph'
 
 alias vimrc='vim ~/.vimrc'

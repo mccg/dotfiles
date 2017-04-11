@@ -60,6 +60,7 @@ inoremap <c-j> <Right><esc>
 vnoremap <c-j> <esc>
 inoremap <c-f> <Right><esc>
 vnoremap <c-f> <esc>
+nnoremap <c-f> <esc>
 inoremap <c-d> <esc>ddi
 inoremap <c-p> <esc>pi
 nnoremap <c-n> :NERDTree<cr>

@@ -4,12 +4,12 @@ Development configs.
 
 ## Content:
 * vimrc
-* bashrc_gem
+* bashgem
 * gitconfig
 * iterm2-colorscheme
-* deploy configs bash.
+* setup configs(`.vimrc`, `.bashgem`, `.gitconfig`) bash.
 
-## How to deploy:
+## How to setup:
 ```shell
 git clone https://github.com/mccgit/dotfiles.git dotfiles
 cd dotfiles

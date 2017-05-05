@@ -85,10 +85,10 @@ iabbrev <% <% %><left><left><left>
 augroup filetype_scripts
   autocmd!
   autocmd FileType ruby inoremap {}<space> {<space><space>}<Left><Left>
-  autocmd FileType python,ruby,sh nnoremap <leader>c I#<space><esc>
-  autocmd FileType python,ruby,sh vnoremap <leader>c I#<space><esc>
-  autocmd FileType sql nnoremap <leader>c I--<space><esc>
-  autocmd FileType sql,ruby,sh set ts=2|set sts=2|set sw=2
+  autocmd FileType python,ruby,sh noremap <leader>c I#<space><esc>
+  autocmd FileType cpp noremap <leader>c I//<space><esc>
+  autocmd FileType sql noremap <leader>c I--<space><esc>
+  autocmd FileType sql,ruby,sh,cpp set ts=2|set sts=2|set sw=2
 augroup END
 
 " NerdTreeGit symbol using
@@ -103,4 +103,4 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
-
+let g:NERDTreeGlyphReadOnly = '[RO]'

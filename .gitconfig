@@ -5,6 +5,7 @@
 	name = miaocc
 [alias]
 	adog = log --color --graph --oneline --decorate --all
+	asdog = log --color --graph --oneline --decorate --all --simplify-by-decoration
 	co = checkout
 	df = diff
 	dfc = diff --cached

@@ -75,6 +75,7 @@ nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>a :set mouse=a<cr>
 nnoremap <leader>p :set paste<cr>
 nnoremap <leader>n :set nopaste<cr>
+nnoremap <leader>s :%s###gc<left><left><left><left>
 inoremap <leader>m <esc>d0i<bs><del>
 
 " Erb using

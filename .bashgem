@@ -22,6 +22,10 @@ watch2 () {
   done
 }
 
+mkcd () {
+  mkdir -p $1 && cd $1
+}
+
 export PS1="[\u@\h \w]\033[32m\]\$(parse_git_branch)\033[0m\]\n$ "
 export TERM=xterm-256color
 
@@ -39,11 +43,13 @@ alias dirs='dirs -v'
 alias pd='pushd'
 alias cd2='cd ../..'
 alias cd3='cd ../../..'
+
 alias gitadog='git log --oneline --all --decorate --graph'
 
 alias vimrc='vim ~/.vimrc'
-alias vimbashrc='vim ~/.bashrc'
-alias vimbashprofile='vim ~/.bash_profile'
+alias vbashrc='vim ~/.bashrc'
+alias sbashrc='source ~/.bashrc'
+alias vbashprofile='vim ~/.bash_profile'
 
 alias pingbaidu="ping www.baidu.com"
 alias sag='/usr/bin/ssh-agent bash'

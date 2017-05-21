@@ -45,6 +45,7 @@ alias cd2='cd ../..'
 alias cd3='cd ../../..'
 
 alias gitadog='git log --oneline --all --decorate --graph'
+alias gitac='git add -A && git commit -m'
 
 alias vimrc='vim ~/.vimrc'
 alias vbashrc='vim ~/.bashrc'

@@ -3,7 +3,6 @@
 pre_define () {
   sys_names="CentOS \
              MacOS \
-             Ubuntu \
              None-of-above"
   sys_name="CentOS"
 }
@@ -50,12 +49,9 @@ deploy_bashgem () {
 
 install_ack () {
   if [ "$1"x == "CentOS"x ]; then
-    sudo yum install epel-release -y
-    sudo yum install ack -y
+    rpm -qa | egrep -q "^ack-" || (sudo yum install epel-release -y && sudo yum install ack -y)
   elif [ "$1"x == "MacOS"x ]; then
     brew list | grep -q ack || brew install ack
-  elif [ "$1"x == "Ubuntu"x ]; then
-    sudo apt-get install ack-grep -y
   else
     echo "Please install ack to use Ack plugin in vim."
   fi
@@ -149,7 +145,7 @@ main_func () {
         echo "                it's the first time setup configs in CentOS."
         echo " -b           : deploy bashgem."
         echo " -n <name>    : choose system you are deploying. Default is CentOS."
-        echo "                supported system names: [ CentOS, MacOS, Ubuntu ]"
+        echo "                supported system names: [ CentOS, MacOS ]"
         echo " -v           : deploy vimrc."
         echo " -g           : deploy gitconfig."
         echo "-------------------------------------------------------------------"

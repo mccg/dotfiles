@@ -38,9 +38,9 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " --- Plugin End ---
 set number
-set ts=4
-set sts=4
-set sw=4
+set ts=2
+set sts=2
+set sw=2
 set colorcolumn=128
 set expandtab
 set mouse=a
@@ -70,11 +70,15 @@ nnoremap <C-k> 8zh
 inoremap <C-k> <esc>8zhi
 nnoremap <C-l> 8zl
 inoremap <C-l> <esc>8zli
-nnoremap <leader>e :source $MYVIMRC<cr>
-nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>a :set mouse=a<cr>
+nnoremap <leader>e :source $MYVIMRC<cr>
+nnoremap <leader>l :set list<cr>
+nnoremap <leader>nl :set nolist<cr>
+nnoremap <leader>np :set nopaste<cr>
+nnoremap <leader>nt :set noexpandtab<cr>
 nnoremap <leader>p :set paste<cr>
-nnoremap <leader>n :set nopaste<cr>
+nnoremap <leader>t :set expandtab<cr>
+nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>s :%s###gc<left><left><left><left>
 inoremap <leader>m <esc>d0i<bs><del>
 
@@ -89,7 +93,6 @@ augroup filetype_scripts
   autocmd FileType python,ruby,sh noremap <leader>c I#<space><esc>
   autocmd FileType cpp noremap <leader>c I//<space><esc>
   autocmd FileType sql noremap <leader>c I--<space><esc>
-  autocmd FileType sql,ruby,sh,cpp set ts=2|set sts=2|set sw=2
 augroup END
 
 " NerdTreeGit symbol using

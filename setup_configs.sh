@@ -53,7 +53,7 @@ install_ack () {
     sudo yum install epel-release -y
     sudo yum install ack -y
   elif [ "$1"x == "MacOS"x ]; then
-    brew install ack
+    brew list | grep -q ack || brew install ack
   elif [ "$1"x == "Ubuntu"x ]; then
     sudo apt-get install ack-grep -y
   else

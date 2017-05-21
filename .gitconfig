@@ -4,15 +4,20 @@
 	email = mcceztau@gmail.com
 	name = miaocc
 [alias]
+	aa = add -A
 	adog = log --color --graph --oneline --decorate --all
 	asdog = log --color --graph --oneline --decorate --all --simplify-by-decoration
+	ca = commit --amend
+	cm = commit -m
 	co = checkout
 	df = diff
 	dfc = diff --cached
+	pl = pull
 	po = push origin
 	pr = pull --rebase
 	pro = pull --rebase origin
-	pu = pull
+	rb = rebase
+	ri = rebase -i
 	sb = status -sb
 	sh = stash
 	st = status

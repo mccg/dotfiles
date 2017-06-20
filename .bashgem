@@ -1,25 +1,60 @@
 # .bashrc
 
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+parse_git_branch () {
+  git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+watchd () {
+  [ x"$1" == x"usage" ] && { echo "WATCHD_F=<file> watchd <command>"; return 0; }
+  command -v md5sum >/dev/null 2>&1 || { echo "Command 'md5sum' required but not installed."; return -1; }
+  [ $(printenv WATCHD_N) ] || WATCHD_N=0.8
+  [ $(printenv WATCHD_F) ] || { echo "A file must be watched. Set WATCHD_F="; return -2; }
+  let watchd_executed_times=0
+  local watchd_md5sum=
+ (
+  trap 'rm -f ${temp_file};echo -e "\nExit watchd."' EXIT
+  while true;
+  do
+    local watching_md5sum=`md5sum ${WATCHD_F} | cut -f1 -d' '`
+    if [[ x$watching_md5sum != x$watchd_md5sum ]];then
+      local temp_file=$(mktemp)
+      let watchd_executed_times=watchd_executed_times+1
+      watchd_md5sum=$watching_md5sum
+      echo "[watchd] : "`date "+%F %T %Z %z"`". Watching file: ${WATCHD_F}" >>$temp_file
+      echo "[watchd] : Command : "$@                                        >>$temp_file
+      $@                                                                    >>$temp_file 2>&1
+      echo ""                                                               >>$temp_file
+      echo "[watchd] : ${watchd_executed_times} times executed."            >>$temp_file
+      clear
+      cat $temp_file
+      rm -f $temp_file
+    fi
+    sleep $WATCHD_N
+  done
+ )
 }
 
 watch2 () {
-  WATCH2_N=`printenv WATCH2_N`
-  [ ${WATCH2_N} ] || WATCH2_N=3
+  [ x"$1" == x"usage" ] && { echo "[ WATCH2_N=<number> ] watch2 <command>"; return 0; }
+  [ $(printenv WATCH2_N) ] || WATCH2_N=3
   let watch2_executed_times=0
-  while sleep $WATCH2_N;
+ (
+  trap 'rm -f ${temp_file};echo -e "\nExit watch2."' EXIT
+  while true;
   do
-    temp_file=$(mktemp)
-    let watch2_executed_times=watch2_executed_times+1 
-    echo -e "[watch2] : "`date "+%F %T %Z %z"` >> ${temp_file}
-    echo -e "[watch2] : command : "$@ >> ${temp_file}
-    $@ >> ${temp_file} 2>&1
-    echo -e "\n[watch2] : ${watch2_executed_times} times executed." >> ${temp_file}
+    local temp_file=$(mktemp)
+    let watch2_executed_times=watch2_executed_times+1
+    echo "[watch2] : "`date "+%F %T %Z %z"`". Time interval: ${WATCH2_N}s" >>$temp_file
+    echo "[watch2] : Command : "$@                                         >>$temp_file
+    $@                                                                     >>$temp_file 2>&1
+    echo ""                                                                >>$temp_file
+    echo "[watch2] : ${watch2_executed_times} times executed."             >>$temp_file
     clear
     cat $temp_file
     rm -f $temp_file
+    sleep $WATCH2_N
   done
+ )
 }
 
 mkcd () {
@@ -52,8 +87,8 @@ alias gitac='git add -A && git commit -m'
 
 alias vimrc='vim ~/.vimrc'
 alias vbashrc='vim ~/.bashrc'
-alias sbashrc='source ~/.bashrc'
 alias vbashprofile='vim ~/.bash_profile'
+alias sbashrc='source ~/.bashrc'
 
 alias pingbaidu="ping www.baidu.com"
 alias sag='/usr/bin/ssh-agent bash'

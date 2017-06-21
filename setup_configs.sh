@@ -4,7 +4,15 @@ pre_define () {
   sys_names="CentOS \
              MacOS \
              None-of-above"
-  sys_name="CentOS"
+  sys_u=$(uname -s)
+  case $sys_u in
+    Darwin)
+      sys_name=MacOS
+      ;;
+    Linux)
+      sys_name=CentOS
+      ;;
+  esac
 }
 
 select_os_name () {

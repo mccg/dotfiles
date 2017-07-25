@@ -17,13 +17,9 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve r
 " --- Vundle End ---
 " -> neocomplete begin
-" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
 let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 " Select by CR
 noremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -36,7 +32,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 let g:airline_theme='simple'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-" --- Plugin End ---
+" <- Plugins End
 set number
 set ts=2
 set sts=2
@@ -81,6 +77,7 @@ nnoremap <leader>t :set expandtab<cr>
 nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>s :%s###gc<left><left><left><left>
 inoremap <leader>m <esc>d0i<bs><del>
+inoremap <leader>k <cr><up><esc>ddp<up>i
 
 " Erb using
 " iabbrev <%= <%=  %><left><left><left>
@@ -91,8 +88,8 @@ augroup filetype_scripts
   autocmd!
   autocmd FileType ruby inoremap {}<space> {<space><space>}<Left><Left>
   autocmd FileType python,ruby,sh noremap <leader>c I#<space><esc>
-  autocmd FileType cpp noremap <leader>c I//<space><esc>
-  autocmd FileType sql noremap <leader>c I--<space><esc>
+  autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
+  autocmd FileType sql,lua noremap <leader>c I--<space><esc>
 augroup END
 
 " NerdTreeGit symbol using

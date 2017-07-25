@@ -102,6 +102,7 @@ do_deploy_gitconfig () {
     git config --global user.name $git_user_name
     git config --global user.email $git_user_email
   fi
+  echo "--- .gitconfig deployed."
 }
 
 deploy_gitconfig () {

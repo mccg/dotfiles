@@ -16,6 +16,8 @@ filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve r
 " --- Vundle End ---
+" -> nerdtree begin
+let g:NERDTreeWinSize = 39
 " -> neocomplete begin
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1

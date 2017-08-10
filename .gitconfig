@@ -5,13 +5,14 @@
 	name = miaocc
 [alias]
 	aa = add -A
-	adog = log --color --graph --oneline --decorate --all
-	asdog = log --color --graph --oneline --decorate --all --simplify-by-decoration
 	ca = commit --amend
 	cm = commit -m
 	co = checkout
 	df = diff
 	dfc = diff --cached
+	dog = log --color --graph --all --decorate --pretty=format:'%C(auto)%h -%d %s %Cred%ai %C(bold blue)<%an>%Creset'
+	dogd = log --color --graph --all --decorate --pretty=format:'%C(auto)%h -%d %s %C(bold blue)<%an>%Creset' --simplify-by-decoration
+	dogs = log --color --graph --all --decorate --oneline --stat
 	pl = pull
 	po = push origin
 	pr = pull --rebase

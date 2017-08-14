@@ -1,3 +1,4 @@
+#!/bin/bash
 # .bashrc
 
 parse_git_branch () {
@@ -57,6 +58,14 @@ watch2 () {
  )
 }
 
+cl () {
+  cd $1 && ls
+}
+
+lsp () {
+  for f in "$@";do find `pwd` -name "$f";done
+}
+
 mkcd () {
   mkdir -p $1 && cd $1
 }
@@ -71,7 +80,6 @@ alias la='ls -a'
 alias lh='ls -lh'
 alias ll='ls -lh'
 alias lla='ls -lha'
-alias lsp='find `pwd` -name'
 alias tat='tmux at -t'
 alias tls='tmux ls'
 alias tns='tmux new -s'

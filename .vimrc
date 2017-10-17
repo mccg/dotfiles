@@ -7,6 +7,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'elixir-editors/vim-elixir'
 Plugin 'Shougo/neocomplete'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -41,7 +42,7 @@ set sts=2
 set sw=2
 set colorcolumn=128
 set expandtab
-set mouse=v
+set mouse=a
 set nowrap
 set hlsearch incsearch
 set showmode showmatch
@@ -54,12 +55,10 @@ syntax enable
 syntax on
 let mapleader=','
 
-inoremap <c-j> <Right><esc>
+inoremap <c-j> <esc>
 vnoremap <c-j> <esc>
 inoremap <c-f> <Right><esc>
 vnoremap <c-f> <esc>
-inoremap <c-g> <Right><esc>wi
-inoremap <c-b> <Right><esc>bi
 nnoremap <c-f> <esc>
 inoremap <c-d> <esc>ddi
 inoremap <c-p> <esc>pi
@@ -90,7 +89,7 @@ iabbrev <% <% %><left><left><left>
 " scripts using
 augroup filetype_scripts
   autocmd!
-  autocmd FileType yml inoremap {}<space> {<space><space>}<Left><Left>
+  autocmd FileType ruby inoremap {}<space> {<space><space>}<Left><Left>
   autocmd FileType python,ruby,sh noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>

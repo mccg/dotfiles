@@ -42,7 +42,7 @@ set sts=2
 set sw=2
 set colorcolumn=128
 set expandtab
-set mouse=a
+set mouse=v
 set nowrap
 set hlsearch incsearch
 set showmode showmatch
@@ -55,8 +55,8 @@ syntax enable
 syntax on
 let mapleader=','
 
-inoremap <c-h> <esc>
-vnoremap <c-h> <esc>
+inoremap <c-d> <esc>
+vnoremap <c-d> <esc>
 inoremap <c-f> <Right><esc>
 vnoremap <c-f> <esc>
 nnoremap <c-f> <esc>
@@ -85,7 +85,6 @@ nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>s :%s###gc<left><left><left><left>
 inoremap <leader>m <esc>d0i<bs><del>
 inoremap <leader>k <cr><up><esc>ddp<up>i
-
 
 " scripts using
 augroup filetype_scripts

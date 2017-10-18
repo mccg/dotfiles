@@ -19,8 +19,13 @@
 	pro = pull --rebase origin
 	rb = rebase
 	ri = rebase -i
+	rt = reset
+	rth = reset --hard
+	rts = reset --soft
 	sb = status -sb
 	sh = stash
+	shl = stash list
+	shs = stash save
 	st = status
 	sta = status
 [push]

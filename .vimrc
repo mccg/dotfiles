@@ -55,8 +55,6 @@ syntax enable
 syntax on
 let mapleader=','
 
-inoremap <c-d> <esc>
-vnoremap <c-d> <esc>
 inoremap <c-f> <Right><esc>
 vnoremap <c-f> <esc>
 nnoremap <c-f> <esc>
@@ -69,10 +67,8 @@ nnoremap <C-u> 8zh
 inoremap <C-u> <esc>8zhi
 nnoremap <C-o> 8zl
 inoremap <C-o> <esc>8zli
-inoremap <C-i> <up>
 inoremap <C-j> <left>
-inoremap <C-k> <down>
-inoremap <C-l> <right>
+inoremap <C-k> <right>
 nnoremap <leader>a :set mouse=a<cr>
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>l :set list<cr>

@@ -64,11 +64,11 @@ nnoremap <c-n> :NERDTree<cr>
 inoremap <c-w> <esc><c-w>
 nnoremap ; :
 nnoremap <C-u> 8zh
-inoremap <C-u> <esc>8zhi
+inoremap <C-u> <left>
 nnoremap <C-o> 8zl
-inoremap <C-o> <esc>8zli
-inoremap <C-j> <left>
-inoremap <C-k> <right>
+inoremap <C-o> <right>
+inoremap <C-j> <down>
+inoremap <C-k> <up>
 nnoremap <leader>a :set mouse=a<cr>
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>l :set list<cr>
@@ -85,7 +85,6 @@ inoremap <leader>k <cr><up><esc>ddp<up>i
 " scripts using
 augroup filetype_scripts
   autocmd!
-  autocmd FileType yml inoremap {}<space> {<space><space>}<Left><Left>
   autocmd FileType python,ruby,sh noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>

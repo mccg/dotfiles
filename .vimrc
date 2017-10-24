@@ -88,6 +88,7 @@ augroup filetype_scripts
   autocmd FileType python,ruby,sh noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>
+  autocmd FileType erlang noremap <leader>c I%<space><esc>
 augroup END
 
 " NerdTreeGit symbol using

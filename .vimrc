@@ -65,8 +65,8 @@ inoremap <c-w> <esc><c-w>
 nnoremap ; :
 nnoremap <C-u> 8zh
 inoremap <C-u> <left>
-nnoremap <C-o> 8zl
-inoremap <C-o> <right>
+nnoremap <C-p> 8zl
+inoremap <C-l> <right>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
 nnoremap <leader>a :set mouse=a<cr>

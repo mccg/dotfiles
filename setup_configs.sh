@@ -118,10 +118,15 @@ deploy_gitconfig () {
   do_deploy_gitconfig $git_user_email_option
 }
 
+deploy_tmuxconf () {
+  cp .tmux.conf ~/.tmux.conf
+  echo "--- .tmux.conf deployed."
+}
+
 main_func () {
   pre_define
 
-  while getopts abhn:vg option
+  while getopts abhn:vgt option
   do
     case $option in
       a)
@@ -146,6 +151,9 @@ main_func () {
       v)
         # echo "-v get"
         deploy_vimrc
+        ;;
+      t)
+        deploy_tmuxconf
         ;;
       h)
         # echo "-h get"

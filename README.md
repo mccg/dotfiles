@@ -6,6 +6,7 @@ Development configs.
 * vimrc
 * bashgem
 * gitconfig
+* tmuxconf
 * iterm2-colorscheme
 * setup configs(`.vimrc`, `.bashgem`, `.gitconfig`) bash.
 

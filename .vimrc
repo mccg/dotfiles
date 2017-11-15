@@ -18,7 +18,7 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve r
 " --- Vundle End ---
 " -> nerdtree begin
-let g:NERDTreeWinSize = 39
+let g:NERDTreeWinSize = 32
 " -> neocomplete begin
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
@@ -71,14 +71,18 @@ inoremap <C-j> <down>
 inoremap <C-k> <up>
 nnoremap <leader>a :set mouse=a<cr>
 nnoremap <leader>e :source $MYVIMRC<cr>
+nnoremap <leader>h <c-w>4+
 nnoremap <leader>l :set list<cr>
+nnoremap <leader>nh <c-w>4-
 nnoremap <leader>nl :set nolist<cr>
 nnoremap <leader>np :set nopaste<cr>
 nnoremap <leader>nt :set noexpandtab<cr>
+nnoremap <leader>nw <c-w>8<
 nnoremap <leader>p :set paste<cr>
 nnoremap <leader>t :set expandtab<cr>
 nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>s :%s###gc<left><left><left><left>
+nnoremap <leader>w <c-w>8>
 inoremap <leader>m <esc>d0i<bs><del>
 inoremap <leader>k <cr><up><esc>ddp<up>i
 

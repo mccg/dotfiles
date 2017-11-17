@@ -95,6 +95,12 @@ augroup filetype_scripts
   autocmd FileType erlang noremap <leader>c I%<space><esc>
 augroup END
 
+" cursor using
+augroup my_cursor
+  autocmd!
+  autocmd InsertEnter,InsertLeave * set cuc!
+augroup END
+
 " NerdTreeGit symbol using
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",

@@ -58,6 +58,7 @@ let mapleader=','
 inoremap <c-f> <Right><esc>
 vnoremap <c-f> <esc>
 nnoremap <c-f> <esc>
+imap     <c-c> <c-f>
 inoremap <c-d> <esc>ddi
 inoremap <c-p> <esc>pi
 nnoremap <c-n> :NERDTree<cr>

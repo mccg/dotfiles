@@ -8,6 +8,7 @@ Development configs.
 * gitconfig
 * tmuxconf
 * iterm2-colorscheme
+* AutoHotKey
 * setup configs(`.vimrc`, `.bashgem`, `.gitconfig`) bash.
 
 ## How to setup:

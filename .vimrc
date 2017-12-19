@@ -87,6 +87,7 @@ nnoremap <leader>w <c-w>8>
 inoremap <leader>m <esc>d0i<bs><del>
 inoremap <leader>k <cr><up><esc>ddp<up>i
 vnoremap // y/<c-r>"<cr>
+vnoremap /a y:Ack<space><c-r>"<cr>
 
 " scripts using
 augroup filetype_scripts

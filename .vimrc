@@ -92,10 +92,13 @@ vnoremap /a y:Ack<space><c-r>"<cr>
 " scripts using
 augroup filetype_scripts
   autocmd!
-  autocmd FileType python,ruby,sh noremap <leader>c I#<space><esc>
+  autocmd FileType python,ruby,sh,elixir noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>
   autocmd FileType erlang noremap <leader>c I%<space><esc>
+
+  autocmd FileType eruby,eelixir inoremap <leader>eq <%=<space><space>%><left><left><left>
+  autocmd FileType eruby,eelixir inoremap <leader>ee <%<space><space>%><left><left><left>
 augroup END
 
 " cursor using

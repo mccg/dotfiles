@@ -71,6 +71,10 @@ inoremap <C-l> <right>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
 nnoremap <leader>a :set mouse=a<cr>
+inoremap <leader>bb ()<left>
+inoremap <leader>bs []<left>
+inoremap <leader>bc {}<left>
+inoremap <leader>ba <><left>
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>h <c-w>4+
 nnoremap <leader>l :set list<cr>

@@ -55,7 +55,7 @@ syntax enable
 syntax on
 let mapleader=','
 
-inoremap <c-f> <Right><esc>
+inoremap <c-f> <right><esc>
 vnoremap <c-f> <esc>
 nnoremap <c-f> <esc>
 imap     <c-c> <c-f>
@@ -75,6 +75,8 @@ inoremap <leader>bb ()<left>
 inoremap <leader>bs []<left>
 inoremap <leader>bc {}<left>
 inoremap <leader>ba <><left>
+inoremap <leader>dd "<esc>bi"<esc>wwa
+inoremap <leader>ds '<esc>bi'<esc>wwa
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>h <c-w>4+
 nnoremap <leader>l :set list<cr>

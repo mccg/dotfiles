@@ -70,6 +70,10 @@ nnoremap <C-p> 8zl
 inoremap <C-l> <right>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
+inoremap <leader>ad =><space>
+inoremap <leader>al <-<space>
+inoremap <leader>ap <bar>><space>
+inoremap <leader>ar -><space>
 nnoremap <leader>a :set mouse=a<cr>
 inoremap <leader>bb ()<left>
 inoremap <leader>bs []<left>

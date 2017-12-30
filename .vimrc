@@ -1,4 +1,4 @@
-" --- Vundle Begin ---
+" <Vundle>
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -16,26 +16,35 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve r
-" --- Vundle End ---
-" -> nerdtree begin
+" </Vundle End>
+" <Plugins>
+"   <nerdtree>
 let g:NERDTreeWinSize = 32
-" -> neocomplete begin
+"   </nerdtree>
+"   <neocomplete>
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 0
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 " Select by CR
-noremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
+  " For no inserting <CR> key.
   return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" -> vim-airline begin
+"   </neocomplete>
+"   <vim-airline>
 let g:airline_theme='simple'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-" <- Plugins End
+"   </vim-airline>
+" </Plugins>
+
+set backspace=indent,eol,start
 set number
 set ts=2
 set sts=2
@@ -53,7 +62,12 @@ highlight ColorColumn ctermbg=7
 
 syntax enable
 syntax on
+
 let mapleader=','
+
+function MyMatchBracketJump()
+  let dq_match = search('\( \)\|\((\)\|\([\)|\({\)', 'b')
+endfunction
 
 inoremap <c-f> <right><esc>
 vnoremap <c-f> <esc>
@@ -64,7 +78,6 @@ inoremap <c-p> <esc>pi
 nnoremap <c-n> :NERDTree<cr>
 inoremap <c-w> <esc><c-w>
 nnoremap ; :
-nnoremap <C-u> 8zh
 inoremap <C-u> <left>
 nnoremap <C-p> 8zl
 inoremap <C-l> <right>
@@ -79,8 +92,8 @@ inoremap <leader>bb ()<left>
 inoremap <leader>bs []<left>
 inoremap <leader>bc {}<left>
 inoremap <leader>ba <><left>
-inoremap <leader>dd "<esc>bi"<esc>wwa
-inoremap <leader>ds '<esc>bi'<esc>wwa
+inoremap <leader>db "<esc>:call MyMatchBracketJump()<cr>a"<esc>f"a
+inoremap <leader>dw "<esc>bi"<esc>wwa
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>h <c-w>4+
 nnoremap <leader>l :set list<cr>
@@ -90,17 +103,20 @@ nnoremap <leader>np :set nopaste<cr>
 nnoremap <leader>nt :set noexpandtab<cr>
 nnoremap <leader>nw <c-w>8<
 nnoremap <leader>p :set paste<cr>
+nnoremap <leader>re :%s###gc<left><left><left><left>
+nnoremap <leader>rs :%s#[ ]\+$##gc<cr>
+inoremap <leader>sb '<esc>:call MyMatchBracketJump()<cr>a'<esc>f'a
+inoremap <leader>sw '<esc>bi'<esc>wwa
 nnoremap <leader>t :set expandtab<cr>
 nnoremap <leader>v :set mouse=v<cr>
-nnoremap <leader>s :%s###gc<left><left><left><left>
 nnoremap <leader>w <c-w>8>
 inoremap <leader>m <esc>d0i<bs><del>
 inoremap <leader>k <cr><up><esc>ddp<up>i
 vnoremap // y/<c-r>"<cr>
 vnoremap /a y:Ack<space><c-r>"<cr>
 
-" scripts using
-augroup filetype_scripts
+" Command vary with file's type
+augroup file_types
   autocmd!
   autocmd FileType python,ruby,sh,elixir noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
@@ -111,8 +127,8 @@ augroup filetype_scripts
   autocmd FileType eruby,eelixir inoremap <leader>ee <%<space><space>%><left><left><left>
 augroup END
 
-" cursor using
-augroup my_cursor
+" Command at switching mode
+augroup mode_actions
   autocmd!
   autocmd InsertEnter,InsertLeave * set cuc!
 augroup END

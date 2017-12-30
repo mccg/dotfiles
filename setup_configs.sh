@@ -68,6 +68,7 @@ install_ack () {
 do_deploy_vimrc () {
   cp .vimrc ~/.vimrc
   mkdir -p ~/.vim/vundle/plugin
+  rsync -av dict ~/.vim/
   echo " |--- install vundle:"
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   echo " |--- install ack:"

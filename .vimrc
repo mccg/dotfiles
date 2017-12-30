@@ -25,7 +25,13 @@ let g:NERDTreeWinSize = 32
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 0
+let g:neocomplete#enable_auto_select = 0
+let g:neocomplete#disable_auto_complete = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#dictionary#dictionaries = {
+\ 'default' : '',
+\ 'ruby' : $VIM.'/dict/ruby.dict',
+\ }
 " Select by CR
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
@@ -69,20 +75,23 @@ function MyMatchBracketJump()
   let dq_match = search('\( \)\|\((\)\|\([\)|\({\)', 'b')
 endfunction
 
-inoremap <c-f> <right><esc>
-vnoremap <c-f> <esc>
-nnoremap <c-f> <esc>
+nnoremap ; :
+nnoremap ZA :wa<cr>
+nnoremap ZX :wqa<cr>
+nnoremap ZD :qa!<cr>
 imap     <c-c> <c-f>
 inoremap <c-d> <esc>ddi
-inoremap <c-p> <esc>pi
+inoremap <c-f> <right><esc>
+nnoremap <c-f> <esc>
+vnoremap <c-f> <esc>
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+inoremap <c-l> <right>
+nnoremap <c-l> 8zh
 nnoremap <c-n> :NERDTree<cr>
+inoremap <c-p> <esc>pi
+nnoremap <c-p> 8zl
 inoremap <c-w> <esc><c-w>
-nnoremap ; :
-inoremap <C-u> <left>
-nnoremap <C-p> 8zl
-inoremap <C-l> <right>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
 inoremap <leader>ad =><space>
 inoremap <leader>al <-<space>
 inoremap <leader>ap <bar>><space>
@@ -96,7 +105,9 @@ inoremap <leader>db "<esc>:call MyMatchBracketJump()<cr>a"<esc>f"a
 inoremap <leader>dw "<esc>bi"<esc>wwa
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>h <c-w>4+
+inoremap <leader>k <cr><up><esc>ddp<up>i
 nnoremap <leader>l :set list<cr>
+inoremap <leader>m <esc>d0i<bs><del>
 nnoremap <leader>nh <c-w>4-
 nnoremap <leader>nl :set nolist<cr>
 nnoremap <leader>np :set nopaste<cr>
@@ -109,9 +120,9 @@ inoremap <leader>sb '<esc>:call MyMatchBracketJump()<cr>a'<esc>f'a
 inoremap <leader>sw '<esc>bi'<esc>wwa
 nnoremap <leader>t :set expandtab<cr>
 nnoremap <leader>v :set mouse=v<cr>
+inoremap <leader>u <esc>ui
 nnoremap <leader>w <c-w>8>
-inoremap <leader>m <esc>d0i<bs><del>
-inoremap <leader>k <cr><up><esc>ddp<up>i
+nnoremap <leader>y "0p
 vnoremap // y/<c-r>"<cr>
 vnoremap /a y:Ack<space><c-r>"<cr>
 

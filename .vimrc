@@ -24,13 +24,14 @@ let g:NERDTreeWinSize = 32
 "   <neocomplete>
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 0
+let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#disable_auto_complete = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+set dictionary+=~/.vim/dict/ruby.dict
 let g:neocomplete#sources#dictionary#dictionaries = {
 \ 'default' : '',
-\ 'ruby' : $VIM.'/dict/ruby.dict',
+\ 'ruby' : $HOME.'/.vim/dict/ruby.dict',
 \ }
 " Select by CR
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -42,6 +43,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-n> neocomplete#start_manual_complete()."\<C-n>"
 "   </neocomplete>
 "   <vim-airline>
 let g:airline_theme='simple'
@@ -119,12 +121,13 @@ nnoremap <leader>rs :%s#[ ]\+$##gc<cr>
 inoremap <leader>sb '<esc>:call MyMatchBracketJump()<cr>a'<esc>f'a
 inoremap <leader>sw '<esc>bi'<esc>wwa
 nnoremap <leader>t :set expandtab<cr>
-nnoremap <leader>v :set mouse=v<cr>
 inoremap <leader>u <esc>ui
+nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
 nnoremap <leader>y "0p
 vnoremap // y/<c-r>"<cr>
 vnoremap /a y:Ack<space><c-r>"<cr>
+vnoremap /r y:%s#<c-r>"##gc<left><left><left>
 
 " Command vary with file's type
 augroup file_types

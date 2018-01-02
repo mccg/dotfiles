@@ -73,8 +73,8 @@ syntax on
 
 let mapleader=','
 
-function MyMatchBracketJump()
-  let dq_match = search('\( \)\|\((\)\|\([\)|\({\)', 'b')
+function! MyMatchBracketJump()
+  let dq_match = search('{\|[\| \|(', 'b')
 endfunction
 
 nnoremap ; :

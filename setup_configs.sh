@@ -166,8 +166,9 @@ main_func () {
         echo "                supported system names: [ CentOS, MacOS ]"
         echo " -v           : deploy vimrc."
         echo " -g           : deploy gitconfig."
+        echo " -t           : deploy tmux conf"
         echo "-------------------------------------------------------------------"
-        echo -e "\n     Example <1> :  ./setup_configs.sh -n CentOS -b -v -g"
+        echo -e "\n     Example <1> :  ./setup_configs.sh -n CentOS -b -v -g -t"
         echo -e "\n     Example <2> :  ./setup_configs.sh -bv"
         echo -e "\n   Quick Example :  ./setup_configs.sh -a\n"
         exit 1

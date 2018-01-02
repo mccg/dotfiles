@@ -95,9 +95,9 @@ inoremap <c-p> <esc>pi
 nnoremap <c-p> 8zl
 inoremap <c-w> <esc><c-w>
 inoremap <leader>ad =><space>
-inoremap <leader>al <-<space>
+inoremap <leader>al <space><-<space>
 inoremap <leader>ap <bar>><space>
-inoremap <leader>ar -><space>
+inoremap <leader>ar <space>->
 nnoremap <leader>a :set mouse=a<cr>
 inoremap <leader>bb ()<left>
 inoremap <leader>bs []<left>
@@ -115,6 +115,7 @@ nnoremap <leader>nl :set nolist<cr>
 nnoremap <leader>np :set nopaste<cr>
 nnoremap <leader>nt :set noexpandtab<cr>
 nnoremap <leader>nw <c-w>8<
+inoremap <leader>o <esc>o
 nnoremap <leader>p :set paste<cr>
 nnoremap <leader>re :%s###gc<left><left><left><left>
 nnoremap <leader>rs :%s#[ ]\+$##gc<cr>

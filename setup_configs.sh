@@ -135,6 +135,7 @@ main_func () {
         deploy_bashgem
         do_deploy_gitconfig
         do_deploy_vimrc
+        deploy_tmuxconf
         break
         ;;
       n)

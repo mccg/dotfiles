@@ -1,5 +1,5 @@
-^.::#^right
-^,::#^left
+^'::#^right
+^;::#^left
 ^=::
   send {wheeldown 1}
 return

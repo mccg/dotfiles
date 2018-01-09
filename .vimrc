@@ -134,7 +134,7 @@ vnoremap /r y:%s#<c-r>"##gc<left><left><left>
 " Command vary with file's type
 augroup file_types
   autocmd!
-  autocmd FileType python,ruby,sh,elixir noremap <leader>c I#<space><esc>
+  autocmd FileType python,ruby,sh,elixir,coffee noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>
   autocmd FileType erlang noremap <leader>c I%<space><esc>

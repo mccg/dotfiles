@@ -68,7 +68,6 @@ install_ack () {
 do_deploy_vimrc () {
   cp .vimrc ~/.vimrc
   mkdir -p ~/.vim/vundle/plugin
-  rsync -av dict ~/.vim/
   echo " |--- install vundle:"
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   echo " |--- install ack:"
@@ -83,10 +82,15 @@ deploy_vimrc () {
     choose_yes_or_no
     [ $? -eq 0 ] \
       && echo " |--- .vimrc deployment aborted." \
-      && exit 0
+      && return 0
   fi
   do_deploy_vimrc
   sleep 1
+}
+
+deploy_vimdict () {
+  echo " |--- deploy vim dicts:"
+  rsync -av dict ~/.vim/
 }
 
 do_deploy_gitconfig () {
@@ -153,6 +157,7 @@ main_func () {
       v)
         # echo "-v get"
         deploy_vimrc
+        deploy_vimdict
         ;;
       t)
         deploy_tmuxconf

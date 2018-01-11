@@ -1,6 +1,3 @@
-__ENCODING__
-__FILE__
-__LINE__
 alias
 attr_accessor
 attr_reader
@@ -29,3 +26,6 @@ until
 when
 while
 yield
+__ENCODING__
+__FILE__
+__LINE__

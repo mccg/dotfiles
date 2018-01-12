@@ -30,9 +30,11 @@ let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#disable_auto_complete = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 set dictionary+=~/.vim/dict/ruby.dict
+set dictionary+=~/.vim/dict/elixir.dict
 let g:neocomplete#sources#dictionary#dictionaries = {
 \ 'default' : '',
-\ 'ruby' : $HOME.'/.vim/dict/ruby.dict',
+\ 'ruby'    : $HOME.'/.vim/dict/ruby.dict',
+\ 'elixir'  : $HOME.'/.vim/dict/elixir.dict', 
 \ }
 " Select by CR
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -79,6 +81,7 @@ function! MyMatchBracketJump()
 endfunction
 
 nnoremap ; :
+nnoremap sh :sh<cr>
 nnoremap ZA :wa<cr>
 nnoremap ZX :wqa<cr>
 nnoremap ZD :qa!<cr>

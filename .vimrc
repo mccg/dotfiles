@@ -28,7 +28,7 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 2
 set dictionary+=~/.vim/dict/ruby.dict
 set dictionary+=~/.vim/dict/elixir.dict
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -98,10 +98,11 @@ nnoremap <c-n> :NERDTree<cr>
 inoremap <c-p> <esc>pi
 nnoremap <c-p> 8zl
 inoremap <c-w> <esc><c-w>
+inoremap <leader>aa <esc>A
 inoremap <leader>ad =><space>
-inoremap <leader>al <space><-<space>
+inoremap <leader>al <-<space>
 inoremap <leader>ap <bar>><space>
-inoremap <leader>ar <space>->
+inoremap <leader>ar ->
 nnoremap <leader>a :set mouse=a<cr>
 inoremap <leader>bb ()<left>
 inoremap <leader>bs []<left>
@@ -144,6 +145,7 @@ augroup file_types
 
   autocmd FileType eruby,eelixir inoremap <leader>eq <%=<space><space>%><left><left><left>
   autocmd FileType eruby,eelixir inoremap <leader>ee <%<space><space>%><left><left><left>
+  autocmd FileType elixir inoremap <leader>es <esc>bi%<esc>wea{}<left>
 augroup END
 
 " Command at switching mode

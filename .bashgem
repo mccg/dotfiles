@@ -94,9 +94,12 @@ alias gitadog='git log --oneline --all --decorate --graph'
 alias gitac='git add -A && git commit -m'
 
 alias vimrc='vim ~/.vimrc'
-alias vbashrc='vim ~/.bashrc'
-alias vbashprofile='vim ~/.bash_profile'
+alias vibashrc='vim ~/.bashrc'
+alias vibashprofile='vim ~/.bash_profile'
+alias vibashgem='vim ~/.bashgem'
+alias vigitconfig='vim ~/.gitconfig'
 alias sbashrc='source ~/.bashrc'
+alias stmux='tmux source-file ~/.tmux.conf'
 
 alias pingbaidu="ping www.baidu.com"
 alias sag='/usr/bin/ssh-agent bash'

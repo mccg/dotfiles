@@ -20,3 +20,4 @@ __CALLER__
 __DIR__
 __ENV__
 __MODULE__
+__using__

@@ -72,7 +72,7 @@ do_deploy_vimrc () {
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   echo " |--- install ack:"
   install_ack $sys_name
-  echo " |--- vimrc deployed. => Run :PluginInstall in vim."
+  echo " |--- vimrc deployed."
 }
 
 deploy_vimrc () {
@@ -91,6 +91,7 @@ deploy_vimrc () {
 deploy_vimdict () {
   echo " |--- deploy vim dicts:"
   rsync -av dict ~/.vim/
+  vim -E +PluginInstall +vi +q +q
 }
 
 do_deploy_gitconfig () {

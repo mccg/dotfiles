@@ -1,10 +1,17 @@
 Bitwise
+Float
+Integer
+Kernel
 assert
 behaviour
 cond
+defexception
+defguard
 defimpl
 defmacro
 defmodule
+defoverridable
+defprotocal
 defstruct
 doc
 float

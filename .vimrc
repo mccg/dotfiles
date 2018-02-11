@@ -31,10 +31,12 @@ let g:neocomplete#disable_auto_complete = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 2
 set dictionary+=~/.vim/dict/ruby.dict
 set dictionary+=~/.vim/dict/elixir.dict
+set dictionary+=~/.vim/dict/rust.dict
 let g:neocomplete#sources#dictionary#dictionaries = {
 \ 'default' : '',
 \ 'ruby'    : $HOME.'/.vim/dict/ruby.dict',
 \ 'elixir'  : $HOME.'/.vim/dict/elixir.dict', 
+\ 'rust'    : $HOME.'/.vim/dict/rust.dict',
 \ }
 " Select by CR
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -145,7 +147,9 @@ augroup file_types
 
   autocmd FileType eruby,eelixir inoremap <leader>eq <%=<space><space>%><left><left><left>
   autocmd FileType eruby,eelixir inoremap <leader>ee <%<space><space>%><left><left><left>
-  autocmd FileType elixir inoremap <leader>es <esc>bi%<esc>wea{}<left>
+  autocmd FileType elixir inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
+  autocmd FileType elixir inoremap <leader>em %{}<left>
+  autocmd FileType elixir,ruby,coffee inoremap <leader>ev #{}<left>
 augroup END
 
 " Command at switching mode

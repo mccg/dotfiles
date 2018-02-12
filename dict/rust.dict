@@ -1,3 +1,5 @@
 continue
 match
 println
+extern
+crate

@@ -1,15 +1,12 @@
-.PHONY: usage
 usage:
-	@echo "usage: "; \
-	echo "       vimrc: (making-flow) -> vimrc && make vimrc"; \
-	echo "     vimdict: (making-flow) -> vim dict/*.dict && make vimdict"; \
-	echo "           v: make vimrc vimdict"
+	@echo "Usage: "
+	@echo "        make all"
+	@echo "        make vimrc"
+	@echo "        make vimdict"
 
-.PHONY: vimrc
 vimrc:
 	cp ~/.vimrc .
 
-.PHONY: vimdict
 vimdict:
 	@DICTS=`ls dict/*`; \
 	for dict in $${DICTS[@]}; \
@@ -19,6 +16,15 @@ vimdict:
 	  mv $${dict}.bak $$dict; \
 	done
 
-.PHONY: v
-v: vimrc, vimdict
+v: vimrc vimdict
 
+b:
+	cp ~/.bashgem .
+
+g:
+	cp ~/.gitconfig .
+
+t:
+	cp ~/.tmux.conf .
+
+all: v b g t

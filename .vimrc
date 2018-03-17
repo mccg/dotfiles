@@ -17,7 +17,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve r
-" </Vundle End>
+" </Vundle>
 " <Plugins>
 "   <nerdtree>
 let g:NERDTreeWinSize = 32
@@ -35,7 +35,7 @@ set dictionary+=~/.vim/dict/rust.dict
 let g:neocomplete#sources#dictionary#dictionaries = {
 \ 'default' : '',
 \ 'ruby'    : $HOME.'/.vim/dict/ruby.dict',
-\ 'elixir'  : $HOME.'/.vim/dict/elixir.dict', 
+\ 'elixir'  : $HOME.'/.vim/dict/elixir.dict',
 \ 'rust'    : $HOME.'/.vim/dict/rust.dict',
 \ }
 " Select by CR
@@ -106,14 +106,17 @@ inoremap <leader>al <-<space>
 inoremap <leader>ap <bar>><space>
 inoremap <leader>ar ->
 nnoremap <leader>a :set mouse=a<cr>
-inoremap <leader>bb ()<left>
-inoremap <leader>bs []<left>
-inoremap <leader>bc {}<left>
 inoremap <leader>ba <><left>
+inoremap <leader>bb ()<left>
+inoremap <leader>bc {}<left>
+inoremap <leader>bl {{<space>
+inoremap <leader>br <space>}}
+inoremap <leader>bs []<left>
 inoremap <leader>db "<esc>:call MyMatchBracketJump()<cr>a"<esc>f"a
 inoremap <leader>dw "<esc>bi"<esc>wwa
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>h <c-w>4+
+inoremap <leader>j <esc>Ji
 inoremap <leader>k <cr><up><esc>ddp<up>i
 nnoremap <leader>l :set list<cr>
 inoremap <leader>m <esc>d0i<bs><del>
@@ -123,6 +126,7 @@ nnoremap <leader>np :set nopaste<cr>
 nnoremap <leader>nt :set noexpandtab<cr>
 nnoremap <leader>nw <c-w>8<
 inoremap <leader>o <esc>o
+inoremap <leader>O <esc>O
 nnoremap <leader>p :set paste<cr>
 nnoremap <leader>re :%s###gc<left><left><left><left>
 nnoremap <leader>rs :%s#[ ]\+$##gc<cr>
@@ -143,10 +147,10 @@ augroup file_types
   autocmd FileType python,ruby,sh,elixir,coffee noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>
-  autocmd FileType erlang noremap <leader>c I%<space><esc>
+  autocmd FileType erlang,tex,cls,sty noremap <leader>c I%<space><esc>
 
-  autocmd FileType eruby,eelixir inoremap <leader>eq <%=<space><space>%><left><left><left>
-  autocmd FileType eruby,eelixir inoremap <leader>ee <%<space><space>%><left><left><left>
+  autocmd FileType eruby,eelixir,yaml inoremap <leader>eq <%=<space><space>%><left><left><left>
+  autocmd FileType eruby,eelixir,yaml inoremap <leader>ee <%<space><space>%><left><left><left>
   autocmd FileType elixir inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
   autocmd FileType elixir inoremap <leader>em %{}<left>
   autocmd FileType elixir,ruby,coffee inoremap <leader>ev #{}<left>

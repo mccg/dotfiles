@@ -5,15 +5,16 @@
 	name = miaocc
 [alias]
 	aa = add -A
+	ac = !git add -A && git status && git commit -a -m
 	ca = commit --amend
 	cm = commit -m
 	co = checkout
 	df = diff
 	dfc = diff --cached
+	doga = log --oneline --all --decorate --graph
 	dog = log --color --graph --all --decorate --pretty=format:'%C(auto)%h -%d %s %Cred%ai %C(bold blue)<%an>%Creset'
 	dogd = log --color --graph --all --decorate --pretty=format:'%C(auto)%h -%d %s %C(bold blue)<%an>%Creset' --simplify-by-decoration
 	dogs = log --color --graph --all --decorate --oneline --stat
-	pl = pull
 	po = push origin
 	pr = pull --rebase
 	pro = pull --rebase origin
@@ -30,3 +31,8 @@
 	sta = status
 [push]
 	default = matching
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

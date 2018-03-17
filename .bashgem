@@ -23,7 +23,7 @@ watchd () {
       watchd_md5sum=$watching_md5sum
       echo "[watchd] : "`date "+%F %T %Z %z"`". Watching file: ${WATCHD_F}" >>$temp_file
       echo "[watchd] : Command : "$@                                        >>$temp_file
-      $@                                                                    >>$temp_file 2>&1
+      eval $@                                                               >>$temp_file 2>&1
       echo ""                                                               >>$temp_file
       echo "[watchd] : ${watchd_executed_times} times executed."            >>$temp_file
       clear
@@ -47,7 +47,7 @@ watch2 () {
     let watch2_executed_times=watch2_executed_times+1
     echo "[watch2] : "`date "+%F %T %Z %z"`". Time interval: ${WATCH2_N}s" >>$temp_file
     echo "[watch2] : Command : "$@                                         >>$temp_file
-    $@                                                                     >>$temp_file 2>&1
+    eval $@                                                                >>$temp_file 2>&1
     echo ""                                                                >>$temp_file
     echo "[watch2] : ${watch2_executed_times} times executed."             >>$temp_file
     clear
@@ -128,9 +128,6 @@ alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias his='history'
-
-alias gitadog='git log --oneline --all --decorate --graph'
-alias gitac='git add -A && git commit -m'
 
 alias vimrc='vim ~/.vimrc'
 alias vibashrc='vim ~/.bashrc'

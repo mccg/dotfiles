@@ -76,17 +76,9 @@ watch2 () {
  )
 }
 
-vs () {
-  vim ${1/\:/ +}
-}
-
-lsp () {
-  for f in "$@";do find `pwd` -name "$f";done
-}
-
-mkcd () {
-  mkdir -p $1 && cd $1
-}
+vs () { vim ${1/\:/ +}; }
+lsp () { for f in "$@";do find `pwd` -name "$f";done; }
+mkcd () { mkdir -p $1 && cd $1; }
 
 tarx() {
   if [ -f $1 ] ; then

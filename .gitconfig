@@ -15,9 +15,10 @@
 	dog = log --color --graph --all --decorate --pretty=format:'%C(auto)%h -%d %s %Cred%ai %C(bold blue)<%an>%Creset'
 	dogd = log --color --graph --all --decorate --pretty=format:'%C(auto)%h -%d %s %C(bold blue)<%an>%Creset' --simplify-by-decoration
 	dogs = log --color --graph --all --decorate --oneline --stat
+	hide = update-index --assume-unchanged
 	po = push origin
-	pr = pull --rebase
 	pro = pull --rebase origin
+	ptf = push --tags -f origin
 	rb = rebase
 	ri = rebase -i
 	rt = reset
@@ -25,10 +26,12 @@
 	rts = reset --soft
 	sb = status -sb
 	sh = stash
-	shl = stash list
-	shs = stash save
 	st = status
 	sta = status
+	td = tag --delete
+	tf = tag -f
+	tl = tag --list
+	unhide = update-index --no-assume-unchanged
 [push]
 	default = matching
 [filter "lfs"]

@@ -7,9 +7,7 @@ session_exists() { tmux has-session -t "$1" 2>/dev/null; }
 add_window() { tmux new-window -d -t "$1:" -n "$2" -c "$3"; }
 new_session() { cd "$3" && tmux new-session -d -s "$1" -n "$2" $4; }
 tmux_session_restore() {
-  tmux start-server
-  local count=0
-  local dimensions="$(terminal_size)"
+  tmux start-server; local count=0; local dimensions="$(terminal_size)"
   while IFS=$'\t' read session_name window_name dir; do
     if [[ -d "$dir" && $window_name != "log" && $window_name != "man" ]]; then
       if session_exists "$session_name"; then
@@ -24,24 +22,32 @@ tmux_session_restore() {
 }
 
 watchd () {
-  [ x"$1" == x"usage" ] && { echo "WATCHD_F=<file> watchd <command>"; return 0; }
   command -v md5sum >/dev/null 2>&1 || { echo "Command 'md5sum' required but not installed."; return -1; }
-  [ $(printenv WATCHD_N) ] || WATCHD_N=0.8
-  [ $(printenv WATCHD_F) ] || { echo "A file must be watched. Set WATCHD_F="; return -2; }
+  local WATCHD_N=0.8; local WATCHD_F
+  while [ -n $1 ]; do
+    case $1 in
+      usage) echo "watchd [-n <second>] -f <file> -- <command>"; return 0;;
+      -n)    WATCHD_N=$2; shift 2;;
+      -f)    WATCHD_F=$2; shift 2;;
+      --)    shift 1; break;;
+      *)     watchd usage; return 0;;
+    esac
+  done
+  [ -z ${WATCHD_N} ] && { echo "Interval time must be set. Set -n <second>"; return -2; }
+  [ -z ${WATCHD_F} ] && { echo "A file must be watched. Set -f <FILE>]"; return -3; }
   let watchd_executed_times=0
   local watchd_md5sum=
  (
   trap 'rm -f ${temp_file};echo -e "\nExit watchd."' EXIT
-  while true;
-  do
+  while true; do
     local watching_md5sum=`md5sum ${WATCHD_F} | cut -f1 -d' '`
     if [[ x$watching_md5sum != x$watchd_md5sum ]];then
       local temp_file=$(mktemp)
       let watchd_executed_times=watchd_executed_times+1
       watchd_md5sum=$watching_md5sum
       echo "[watchd] : "`date "+%F %T %Z %z"`". Watching file: ${WATCHD_F}" >>$temp_file
-      echo "[watchd] : Command : "$@                                        >>$temp_file
-      eval $@                                                               >>$temp_file 2>&1
+      echo "[watchd] : Command : "$*                                        >>$temp_file
+      eval $*                                                               >>$temp_file 2>&1
       echo ""                                                               >>$temp_file
       echo "[watchd] : ${watchd_executed_times} times executed."            >>$temp_file
       clear
@@ -54,8 +60,15 @@ watchd () {
 }
 
 watch2 () {
-  [ x"$1" == x"usage" ] && { echo "[ WATCH2_N=<number> ] watch2 <command>"; return 0; }
-  [ $(printenv WATCH2_N) ] || WATCH2_N=3
+  local WATCH2_N=2;
+  while [ -n $1 ]; do
+    case $1 in
+      usage) echo "watch2 -n <second> -- <command>"; return 0;;
+      -n)    WATCH2_N=$2; shift 2;;
+      --)    shift 1; break;;
+      *)     watch2 usage; return 0;;
+    esac
+  done
   let watch2_executed_times=0
  (
   trap 'rm -f ${temp_file};echo -e "\nExit watch2."' EXIT
@@ -64,8 +77,8 @@ watch2 () {
     local temp_file=$(mktemp)
     let watch2_executed_times=watch2_executed_times+1
     echo "[watch2] : "`date "+%F %T %Z %z"`". Time interval: ${WATCH2_N}s" >>$temp_file
-    echo "[watch2] : Command : "$@                                         >>$temp_file
-    eval $@                                                                >>$temp_file 2>&1
+    echo "[watch2] : Command : ""$*"                                         >>$temp_file
+    eval ${*}                                                              >>$temp_file 2>&1
     echo ""                                                                >>$temp_file
     echo "[watch2] : ${watch2_executed_times} times executed."             >>$temp_file
     clear

@@ -28,7 +28,7 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 2
+let g:neocomplete#sources#syntax#min_keyword_length = 1
 set dictionary+=~/.vim/dict/ruby.dict
 set dictionary+=~/.vim/dict/elixir.dict
 set dictionary+=~/.vim/dict/rust.dict
@@ -64,7 +64,7 @@ set sts=2
 set sw=2
 set colorcolumn=128
 set expandtab
-set mouse=v
+set mouse=a
 set nowrap
 set hlsearch incsearch
 set showmode showmatch
@@ -118,7 +118,6 @@ nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>h <c-w>4+
 inoremap <leader>j <esc>Ji
 inoremap <leader>k <cr><up><esc>ddp<up>i
-nnoremap <leader>l :set list<cr>
 inoremap <leader>m <esc>d0i<bs><del>
 nnoremap <leader>nh <c-w>4-
 nnoremap <leader>nl :set nolist<cr>
@@ -127,10 +126,12 @@ nnoremap <leader>nt :set noexpandtab<cr>
 nnoremap <leader>nw <c-w>8<
 inoremap <leader>o <esc>o
 inoremap <leader>O <esc>O
-nnoremap <leader>p :set paste<cr>
+nnoremap <leader>p "*p
 nnoremap <leader>re :%s###gc<left><left><left><left>
 nnoremap <leader>rs :%s#[ ]\+$##gc<cr>
 inoremap <leader>sb '<esc>:call MyMatchBracketJump()<cr>a'<esc>f'a
+nnoremap <leader>sl :set list<cr>
+nnoremap <leader>sp :set paste<cr>
 inoremap <leader>sw '<esc>bi'<esc>wwa
 nnoremap <leader>t :set expandtab<cr>
 inoremap <leader>u <esc>ui
@@ -140,11 +141,12 @@ nnoremap <leader>y "0p
 vnoremap // y/<c-r>"<cr>
 vnoremap /a y:Ack<space><c-r>"<cr>
 vnoremap /r y:%s#<c-r>"##gc<left><left><left>
+vnoremap /y "*y
 
 " Command vary with file's type
 augroup file_types
   autocmd!
-  autocmd FileType python,ruby,sh,elixir,coffee noremap <leader>c I#<space><esc>
+  autocmd FileType python,ruby,sh,elixir,coffee,yaml noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>
   autocmd FileType erlang,tex,cls,sty noremap <leader>c I%<space><esc>

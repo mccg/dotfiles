@@ -26,9 +26,9 @@ let g:NERDTreeWinSize = 32
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_select = 0
+let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 2
 set dictionary+=~/.vim/dict/ruby.dict
 set dictionary+=~/.vim/dict/elixir.dict
 set dictionary+=~/.vim/dict/rust.dict
@@ -87,6 +87,7 @@ nnoremap sh :sh<cr>
 nnoremap ZA :wa<cr>
 nnoremap ZX :wqa<cr>
 nnoremap ZD :qa!<cr>
+nnoremap ZB :badd<space>
 imap     <c-c> <c-f>
 inoremap <c-d> <esc>ddi
 inoremap <c-f> <right><esc>
@@ -115,6 +116,10 @@ inoremap <leader>bs []<left>
 inoremap <leader>db "<esc>:call MyMatchBracketJump()<cr>a"<esc>f"a
 inoremap <leader>dw "<esc>bi"<esc>wwa
 nnoremap <leader>e :source $MYVIMRC<cr>
+inoremap <leader>fa &
+inoremap <leader>fp %
+inoremap <leader>fs *
+inoremap <leader>fx ^
 nnoremap <leader>h <c-w>4+
 inoremap <leader>j <esc>Ji
 inoremap <leader>k <cr><up><esc>ddp<up>i
@@ -126,7 +131,6 @@ nnoremap <leader>nt :set noexpandtab<cr>
 nnoremap <leader>nw <c-w>8<
 inoremap <leader>o <esc>o
 inoremap <leader>O <esc>O
-nnoremap <leader>p "*p
 nnoremap <leader>re :%s###gc<left><left><left><left>
 nnoremap <leader>rs :%s#[ ]\+$##gc<cr>
 inoremap <leader>sb '<esc>:call MyMatchBracketJump()<cr>a'<esc>f'a
@@ -142,6 +146,7 @@ vnoremap // y/<c-r>"<cr>
 vnoremap /a y:Ack<space><c-r>"<cr>
 vnoremap /r y:%s#<c-r>"##gc<left><left><left>
 vnoremap /y "*y
+nnoremap /p "*p
 
 " Command vary with file's type
 augroup file_types

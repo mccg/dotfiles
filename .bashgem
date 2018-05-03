@@ -34,7 +34,7 @@ watchd () {
     esac
   done
   [ -z ${WATCHD_N} ] && { echo "Interval time must be set. Set -n <second>"; return -2; }
-  [ -z ${WATCHD_F} ] && { echo "A file must be watched. Set -f <FILE>]"; return -3; }
+  [ -z ${WATCHD_F} ] && { echo "A file must be watched. Set -f <FILE>"; return -3; }
   let watchd_executed_times=0
   local watchd_md5sum=
  (

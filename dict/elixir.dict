@@ -11,7 +11,7 @@ defimpl
 defmacro
 defmodule
 defoverridable
-defprotocal
+defprotocol
 defstruct
 doc
 float

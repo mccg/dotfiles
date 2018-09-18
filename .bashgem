@@ -34,7 +34,7 @@ watchd () {
     esac
   done
   [ -z ${WATCHD_N} ] && { echo "Interval time must be set. Set -n <second>"; return -2; }
-  [ -z ${WATCHD_F} ] && { echo "A file must be watched. Set -f <FILE>"; return -3; }
+  [ -z ${WATCHD_F} ] && { echo "A file must be watched. Set -f <FILE>]"; return -3; }
   let watchd_executed_times=0
   local watchd_md5sum=
  (
@@ -77,7 +77,7 @@ watch2 () {
     local temp_file=$(mktemp)
     let watch2_executed_times=watch2_executed_times+1
     echo "[watch2] : "`date "+%F %T %Z %z"`". Time interval: ${WATCH2_N}s" >>$temp_file
-    echo "[watch2] : Command : ""$*"                                         >>$temp_file
+    echo "[watch2] : Command : ""$*"                                       >>$temp_file
     eval ${*}                                                              >>$temp_file 2>&1
     echo ""                                                                >>$temp_file
     echo "[watch2] : ${watch2_executed_times} times executed."             >>$temp_file
@@ -136,7 +136,7 @@ parse_git_branch () {
   git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-export PS1="[\u@\h \w]\033[32m\]\$(parse_git_branch)\033[0m\]\n$ "
+export PS1="[\u@\h \w]\033[32m\]\$(parse_git_branch 2>/dev/null)\033[0m\]\n$ "
 export TERM=xterm-256color
 
 alias vi='vim'

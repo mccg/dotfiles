@@ -156,8 +156,10 @@ augroup file_types
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>
   autocmd FileType erlang,tex,cls,sty noremap <leader>c I%<space><esc>
 
-  autocmd FileType eruby,eelixir,yaml inoremap <leader>eq <%=<space><space>%><left><left><left>
-  autocmd FileType eruby,eelixir,yaml inoremap <leader>ee <%<space><space>%><left><left><left>
+  autocmd FileType eruby,eelixir inoremap <leader>eq <%=<space><space>%><left><left><left>
+  autocmd FileType yaml inoremap <leader>eq {%=<space><space>%}<left><left><left>
+  autocmd FileType eruby,eelixir inoremap <leader>ee <%<space><space>%><left><left><left>
+  autocmd FileType yaml inoremap <leader>ee {%<space><space>%}<left><left><left>
   autocmd FileType elixir inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
   autocmd FileType elixir inoremap <leader>em %{}<left>
   autocmd FileType elixir,ruby,coffee inoremap <leader>ev #{}<left>

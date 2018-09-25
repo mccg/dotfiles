@@ -138,6 +138,7 @@ parse_git_branch () {
 
 export PS1="[\u@\h \w]\033[32m\]\$(parse_git_branch 2>/dev/null)\033[0m\]\n$ "
 export TERM=xterm-256color
+export SVN_EDITOR=vi
 
 alias vi='vim'
 alias view='vim -R'

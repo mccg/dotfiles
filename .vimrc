@@ -70,6 +70,7 @@ set hlsearch incsearch
 set showmode showmatch
 set autoindent
 set smartindent
+set background=dark
 
 highlight ColorColumn ctermbg=7
 

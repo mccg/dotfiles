@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 usage:
 	@echo "Usage: "
 	@echo "        make all"

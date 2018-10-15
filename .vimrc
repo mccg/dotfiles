@@ -117,9 +117,7 @@ inoremap <leader>bs []<left>
 inoremap <leader>db "<esc>:call MyMatchBracketJump()<cr>a"<esc>f"a
 inoremap <leader>dw "<esc>bi"<esc>wwa
 nnoremap <leader>e :source $MYVIMRC<cr>
-inoremap <leader>fa &
 inoremap <leader>fp %
-inoremap <leader>fs *
 inoremap <leader>fx ^
 nnoremap <leader>h <c-w>4+
 inoremap <leader>j <esc>Ji

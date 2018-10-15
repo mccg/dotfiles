@@ -2,6 +2,8 @@
 
 pre_define () {
   sys_names="CentOS \
+             Ubuntu \
+             Raspbian \
              MacOS \
              None-of-above"
   sys_u=$(uname -s)
@@ -10,7 +12,18 @@ pre_define () {
       sys_name=MacOS
       ;;
     Linux)
-      sys_name=CentOS
+      local id_expression=`cat /etc/os-release | egrep "^ID="`
+      case $id_expression in
+        *centos*)
+          sys_name=CentOS
+          ;;
+        *ubuntu*)
+          sys_name=Ubuntu
+          ;;
+        *raspbian*)
+          sys_name=Raspbian
+          ;;
+      esac
       ;;
   esac
 }
@@ -56,10 +69,12 @@ deploy_bashgem () {
 }
 
 install_ack () {
-  if [ "$1"x == "CentOS"x ]; then
+  if [ "$1" == "CentOS" ]; then
     rpm -qa | egrep -q "^ack-" || (sudo yum install epel-release -y && sudo yum install ack -y)
-  elif [ "$1"x == "MacOS"x ]; then
+  elif [ "$1" == "MacOS" ]; then
     brew list | grep -q ack || brew install ack
+  elif [ "$1" == "Ubuntu" ] || [ "$1" == "Raspbian" ]; then
+    apt list git 2>/dev/null | grep -q ack || (sudo apt-get install ack-grep -y)
   else
     echo "Please install ack to use Ack plugin in vim."
   fi
@@ -96,7 +111,7 @@ deploy_vimdict () {
 
 do_deploy_gitconfig () {
   cp .gitconfig ~/.gitconfig
-  if [ "$1"x = "individually"x ]; then
+  if [ "$1" == "individually" ]; then
     while [[ -z "${git_user_name}" || -z "${git_user_email}" ]];
     do
       echo "git user name: "$git_user_name

@@ -71,8 +71,9 @@ set showmode showmatch
 set autoindent
 set smartindent
 set background=dark
+set encoding=utf-8
 
-highlight ColorColumn ctermbg=7
+highlight ColorColumn ctermbg=240
 
 syntax enable
 syntax on

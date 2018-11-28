@@ -1,12 +1,18 @@
 #!/bin/bash
 # .bashrc
 
-tmux_session_dump() { local d=$'\t'; tmux list-windows -a -F "#S${d}#W${d}#{pane_current_path}" >~/.tmux-session; }
+tmux-dump-session () {
+  local d=$'\t'
+  local tmux_sessions_dump=~/.tmux.sessions.dump
+  tmux list-windows -a -F "#S${d}#W${d}#{pane_current_path}" > $tmux_sessions_dump
+  echo "[ Dumped `cat $tmux_sessions_dump | wc -l` windows. ]"
+  cat $tmux_sessions_dump
+}
 terminal_size() { stty size 2>/dev/null | awk '{ printf "-x%d -y%d", $2, $1 }'; }
 session_exists() { tmux has-session -t "$1" 2>/dev/null; }
 add_window() { tmux new-window -d -t "$1:" -n "$2" -c "$3"; }
 new_session() { cd "$3" && tmux new-session -d -s "$1" -n "$2" $4; }
-tmux_session_restore() {
+tmux-restore-sessions () {
   tmux start-server; local count=0; local dimensions="$(terminal_size)"
   while IFS=$'\t' read session_name window_name dir; do
     if [[ -d "$dir" && $window_name != "log" && $window_name != "man" ]]; then
@@ -17,8 +23,8 @@ tmux_session_restore() {
         count=$(( count + 1 ))
       fi
     fi
-  done < ~/.tmux-session
-  echo "restored $count sessions"
+  done < ~/.tmux.sessions.dump
+  echo "Restored $count sessions."
 }
 
 watchd () {
@@ -92,6 +98,7 @@ watch2 () {
 vs () { vim ${1/\:/ +}; }
 lsp () { for f in "$@";do find `pwd` -name "$f";done; }
 mkcd () { mkdir -p $1 && cd $1; }
+dud () { sudo du -h -d$1; }
 
 tarx() {
   if [ -f $1 ] ; then

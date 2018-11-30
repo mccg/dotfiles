@@ -28,11 +28,11 @@
   "Right Option Key Sends" : 0,
   "Character Encoding" : 4,
   "Selection Color" : {
-    "Red Component" : 0.31973746827411165,
+    "Red Component" : 0.5,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.15923839661415692,
+    "Blue Component" : 0.25391961566277665,
     "Alpha Component" : 1,
-    "Green Component" : 0.23333405780020675
+    "Green Component" : 0.36999062992832232
   },
   "Mouse Reporting" : true,
   "Cursor Boost" : 0,

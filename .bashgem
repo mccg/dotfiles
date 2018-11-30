@@ -178,8 +178,13 @@ alias sbashrc='source ~/.bashrc'
 alias stmux='tmux source-file ~/.tmux.conf'
 
 alias gti='git'
-alias ci='vi'
+alias ci='vim'
 
 alias pingbaidu="ping www.baidu.com"
 alias sag='/usr/bin/ssh-agent bash'
 alias sad='/usr/bin/ssh-add'
+alias rav='rsync -av'
+
+alias gitignore='vim .gitignore'
+alias gitattrbutes='vim .gitattributes'
+alias gitconfig='vim .git/config'

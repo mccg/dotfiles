@@ -16,6 +16,7 @@
 	dogd = log --color --graph --all --decorate --pretty=format:'%C(auto)%h -%d %s %C(bold blue)<%an>%Creset' --simplify-by-decoration
 	dogs = log --color --graph --all --decorate --oneline --stat
 	hide = update-index --assume-unchanged
+	lfsls = lfs ls-files
 	po = push origin
 	pro = pull --rebase origin
 	ptf = push --tags -f origin

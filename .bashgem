@@ -2,7 +2,7 @@
 # .bashrc
 
 tmux-dump-session () {
-  local d=$'\t'
+  local d='|'
   local tmux_sessions_dump=~/.tmux.sessions.dump
   tmux list-windows -a -F "#S${d}#W${d}#{pane_current_path}" > $tmux_sessions_dump
   echo "[ Dumped `cat $tmux_sessions_dump | wc -l` windows. ]"
@@ -14,7 +14,7 @@ add_window() { tmux new-window -d -t "$1:" -n "$2" -c "$3"; }
 new_session() { cd "$3" && tmux new-session -d -s "$1" -n "$2" $4; }
 tmux-restore-sessions () {
   tmux start-server; local count=0; local dimensions="$(terminal_size)"
-  while IFS=$'\t' read session_name window_name dir; do
+  while IFS='|' read session_name window_name dir; do
     if [[ -d "$dir" && $window_name != "log" && $window_name != "man" ]]; then
       if session_exists "$session_name"; then
         add_window "$session_name" "$window_name" "$dir"

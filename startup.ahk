@@ -1,5 +1,6 @@
 ^'::#^right
 ^;::#^left
+^space::#space
 ^=::
   send {wheeldown 1}
 return

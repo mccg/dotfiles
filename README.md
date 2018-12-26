@@ -7,13 +7,13 @@ Development configs.
 * bashgem
 * gitconfig
 * tmuxconf
-* iterm2-colorscheme
+* iterm2 profile
 * AutoHotKey
-* setup configs(`.vimrc`, `.bashgem`, `.gitconfig`) bash.
+* setup configs(`.vimrc`, `.bashgem`, `.gitconfig`, `.tmux.conf`) bash.
 
 ## How to setup:
 ```shell
 git clone https://github.com/mccgit/dotfiles.git
 cd dotfiles
-./setup_configs.sh -h
+./setup.sh -h
 ```

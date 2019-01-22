@@ -1,6 +1,19 @@
+#SingleInstance force
 ^'::#^right
 ^;::#^left
 ^space::#space
+#s::
+  send ^s
+return
+#z::
+  send ^z
+return
+#c::
+  send ^c
+return
+#v::
+  send ^v
+return
 ^=::
   send {wheeldown 1}
 return

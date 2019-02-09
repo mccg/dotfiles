@@ -13,6 +13,7 @@ Plugin 'Shougo/neocomplete'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mileszs/ack.vim'
+Plugin 'terryma/vim-smooth-scroll'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -92,6 +93,7 @@ nnoremap ZD :qa!<cr>
 nnoremap ZB :badd<space>
 imap     <c-c> <c-f>
 inoremap <c-d> <esc>ddi
+nnoremap <silent> <c-d> :call smooth_scroll#down(&scroll, 25, 2)<cr>
 inoremap <c-f> <right><esc>
 nnoremap <c-f> <esc>
 vnoremap <c-f> <esc>
@@ -102,6 +104,7 @@ nnoremap <c-l> 8zh
 nnoremap <c-n> :NERDTree<cr>
 inoremap <c-p> <esc>pi
 nnoremap <c-p> 8zl
+nnoremap <silent> <c-u> :call smooth_scroll#up(&scroll, 25, 2)<cr>
 inoremap <c-w> <esc><c-w>
 inoremap <leader>aa <esc>A
 inoremap <leader>ad =><space>

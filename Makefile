@@ -37,3 +37,7 @@ blender:
 	cp ~/Library/Application\ Support/Blender/2.80/config/startup.blend  programs.config/blender/.
 	cp ~/Library/Application\ Support/Blender/2.80/config/userpref.blend programs.config/blender/.
 
+.PHONY: bc
+bc:
+	cp ~/.bcrc .
+

@@ -121,8 +121,6 @@ inoremap <leader>bs []<left>
 inoremap <leader>db "<esc>:call MyMatchBracketJump()<cr>a"<esc>f"a
 inoremap <leader>dw "<esc>bi"<esc>wwa
 nnoremap <leader>e :source $MYVIMRC<cr>
-inoremap <leader>fp %
-inoremap <leader>fx ^
 nnoremap <leader>h <c-w>4+
 inoremap <leader>j <esc>Ji
 inoremap <leader>k <cr><up><esc>ddp<up>i
@@ -142,6 +140,7 @@ nnoremap <leader>sp :set paste<cr>
 inoremap <leader>sw '<esc>bi'<esc>wwa
 nnoremap <leader>t :set expandtab<cr>
 inoremap <leader>u <esc>ui
+inoremap <leader>U <esc>bgUeea
 nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
 nnoremap <leader>y "0p

@@ -1,24 +1,20 @@
-" <Vundle>
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/.vim/bundle/plugin')
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'mccg/vim-elixir'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'Shougo/neocomplete'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'mileszs/ack.vim'
-Plugin 'terryma/vim-smooth-scroll'
-call vundle#end()            " required
-filetype plugin indent on    " required
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve r
-" </Vundle>
+" <vim-plug>
+call plug#begin('~/.vim/plugged')
+Plug 'Shougo/neocomplete'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mileszs/ack.vim'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'mccg/vim-elixir', { 'for': 'elixir' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+call plug#end()
+" :PlugInstall
+" :PlugClean
+" </vim-plug>
 " <Plugins>
 "   <nerdtree>
 let g:NERDTreeWinSize = 32
@@ -153,7 +149,7 @@ nnoremap /p "*p
 " Command vary with file's type
 augroup file_types
   autocmd!
-  autocmd FileType python,ruby,sh,elixir,coffee,yaml noremap <leader>c I#<space><esc>
+  autocmd FileType python,ruby,sh,elixir,coffee,yaml,julia noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>
   autocmd FileType erlang,tex,cls,sty noremap <leader>c I%<space><esc>

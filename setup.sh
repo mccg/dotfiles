@@ -14,15 +14,10 @@ pre_define () {
     Linux)
       local id_expression=`cat /etc/os-release | egrep "^ID="`
       case $id_expression in
-        *centos*)
-          sys_name=CentOS
-          ;;
-        *ubuntu*)
-          sys_name=Ubuntu
-          ;;
-        *raspbian*)
-          sys_name=Raspbian
-          ;;
+        *centos*)    sys_name=CentOS;;
+        *fedora*)    sys_name=Fedora;;
+        *ubuntu*)    sys_name=Ubuntu;;
+        *raspbian*)  sys_name=Raspbian;;
       esac
       ;;
   esac
@@ -71,6 +66,8 @@ deploy_bashgem () {
 install_ack () {
   if [ "$1" == "CentOS" ]; then
     rpm -qa | egrep -q "^ack-" || (sudo yum install epel-release -y && sudo yum install ack -y)
+  elif [ "$1" == "Fedora" ]; then
+    sudo yum install ack -y
   elif [ "$1" == "MacOS" ]; then
     brew list | grep -q ack || brew install ack
   elif [ "$1" == "Ubuntu" ] || [ "$1" == "Raspbian" ]; then
@@ -82,11 +79,11 @@ install_ack () {
 
 do_deploy_vimrc () {
   cp .vimrc ~/.vimrc
-  mkdir -p ~/.vim/vundle/plugin
-  echo " |--- install vundle:"
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  echo " |--- install vim-plug:"
+  curl -sfLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   echo " |--- install ack:"
   install_ack $sys_name
+  vim -E +PlugInstall +vi +q +q
   echo " |--- vimrc deployed."
 }
 
@@ -106,7 +103,6 @@ deploy_vimrc () {
 deploy_vimdict () {
   echo " |--- deploy vim dicts:"
   rsync -av dict ~/.vim/
-  vim -E +PluginInstall +vi +q +q
 }
 
 do_deploy_gitconfig () {

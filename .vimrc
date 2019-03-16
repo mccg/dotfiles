@@ -149,7 +149,9 @@ nnoremap /p "*p
 " Command vary with file's type
 augroup file_types
   autocmd!
-  autocmd FileType python,ruby,sh,elixir,coffee,yaml,julia noremap <leader>c I#<space><esc>
+  autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
+
+  autocmd FileType python,ruby,sh,elixir,coffee,yaml,julia,dockerfile noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>
   autocmd FileType erlang,tex,cls,sty noremap <leader>c I%<space><esc>

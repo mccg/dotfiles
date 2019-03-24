@@ -140,8 +140,8 @@ inoremap <leader>U <esc>bgUeea
 nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
 nnoremap <leader>y "0p
-vnoremap // y/<c-r>"<cr>
-vnoremap /a y:Ack<space><c-r>"<cr>
+vnoremap <leader>/ y/<c-r>"<cr>
+vnoremap <leader>a y:Ack<space><c-r>"<cr>
 vnoremap /r y:%s#<c-r>"##gc<left><left><left>
 vnoremap /y "*y
 nnoremap /p "*p

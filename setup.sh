@@ -140,10 +140,21 @@ deploy_tmuxconf () {
   echo "--- .tmux.conf deployed."
 }
 
+deploy_git_stuff () {
+  local src_dir_path=${0%/*}
+  if test "attr" == "$1"; then
+    echo gitattributes: $src_dir_path "=>" `pwd`
+    cp $src_dir_path/.gitattributes `pwd`/.gitattributes
+  elif test "ignore.unity" == "$1"; then
+    echo ignore: $src_dir_path "=>" `pwd`
+    cp $src_dir_path/.gitignore.unity `pwd`/.gitignore
+  fi
+}
+
 main_func () {
   pre_define
 
-  while getopts abhn:vgt option
+  while getopts abG:ghn:tv option
   do
     case $option in
       a)
@@ -161,6 +172,9 @@ main_func () {
       b)
         # echo "-a get"
         deploy_bashgem
+        ;;
+      G)
+        deploy_git_stuff $OPTARG
         ;;
       g)
         # echo "-g get"

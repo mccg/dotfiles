@@ -190,7 +190,10 @@ main_func () {
         ;;
       h)
         # echo "-h get"
-        echo -e "\n\033[44;37m Help:  \033[0m"
+        echo ""
+        echo -e "\033[44;37m       \033[0m"
+        echo -e "\033[44;37m Help: \033[0m"
+        echo -e "\033[44;37m       \033[0m"
         echo " -a           : do all things by default without asking. Useful if"
         echo "                it's the first time setup configs in CentOS."
         echo " -b           : deploy bashgem."
@@ -198,11 +201,14 @@ main_func () {
         echo "                supported system names: [ CentOS, MacOS ]"
         echo " -v           : deploy vimrc."
         echo " -g           : deploy gitconfig."
+        echo " -G <stuff>   : deploy git stuff"
         echo " -t           : deploy tmux conf"
         echo "-------------------------------------------------------------------"
-        echo -e "\n     Example <1> :  ./setup_configs.sh -n CentOS -b -v -g -t"
-        echo -e "\n     Example <2> :  ./setup_configs.sh -bv"
-        echo -e "\n   Quick Example :  ./setup_configs.sh -a\n"
+        echo -e "\n     Example <1> :  ./setup.sh -n CentOS -b -v -g -t"
+        echo -e "\n     Example <2> :  ./setup.sh -bv"
+        echo -e "\n   Quick Example :  ./setup.sh -a"
+        echo -e "\n   Quick Example :  ./setup.sh -G attr"
+        echo ""
         exit 1
         ;;
       *)

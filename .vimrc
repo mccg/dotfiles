@@ -128,6 +128,8 @@ nnoremap <leader>nt :set noexpandtab<cr>
 nnoremap <leader>nw <c-w>8<
 inoremap <leader>o <esc>o
 inoremap <leader>O <esc>O
+inoremap <leader>p <esc>"*pa
+nnoremap <leader>p "*p
 nnoremap <leader>re :%s###gc<left><left><left><left>
 nnoremap <leader>rs :%s#[ ]\+$##gc<cr>
 inoremap <leader>sb '<esc>:call MyMatchBracketJump()<cr>a'<esc>f'a
@@ -139,12 +141,10 @@ inoremap <leader>u <esc>ui
 inoremap <leader>U <esc>bgUeea
 nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
-nnoremap <leader>y "0p
 vnoremap <leader>/ y/<c-r>"<cr>
 vnoremap <leader>a y:Ack<space><c-r>"<cr>
 vnoremap /r y:%s#<c-r>"##gc<left><left><left>
-vnoremap /y "*y
-nnoremap /p "*p
+vnoremap <leader>y "*y
 
 " Command vary with file's type
 augroup file_types

@@ -139,9 +139,9 @@ tarc() {
   fi
 }
 
-parse_git_branch () {
-  git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
+parse_git_branch () { git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
+
+senv () { export `cat $1`; }
 
 # BSD
 export LSCOLORS=ExfxcxdxbxegexBxFxHxHx
@@ -189,3 +189,4 @@ alias rav='rsync -av'
 alias gitignore='vim .gitignore'
 alias gitattrbutes='vim .gitattributes'
 alias gitconfig='vim .git/config'
+alias gitmodules='vim .gitmodules'

@@ -61,7 +61,7 @@ set sts=2
 set sw=2
 set colorcolumn=128
 set expandtab
-set mouse=a
+set mouse=v
 set nowrap
 set hlsearch incsearch
 set showmode showmatch
@@ -163,6 +163,7 @@ augroup file_types
   autocmd FileType elixir inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
   autocmd FileType elixir inoremap <leader>em %{}<left>
   autocmd FileType elixir,ruby,coffee inoremap <leader>ev #{}<left>
+  autocmd FileType text inoremap <leader>el `<space><>`_<left><left><left><left><left>
 augroup END
 
 " Command at switching mode

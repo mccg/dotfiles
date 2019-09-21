@@ -15,8 +15,7 @@ new_session() { cd "$3" && tmux new-session -d -s "$1" -n "$2" $4; }
 tmux-restore-sessions () {
   test `tls | wc -l` -gt 1 && return 0
   tmux -u start-server; local count=0; local dimensions="$(terminal_size)"
-  while IFS='|' read session_name window_name dir;
-  do
+  while IFS='|' read session_name window_name dir; do
     if [[ -d "$dir" && $window_name != "log" && $window_name != "man" ]]; then
       if session_exists "$session_name"; then
         add_window "$session_name" "$window_name" "$dir"
@@ -32,8 +31,7 @@ tmux-restore-sessions () {
 watchd () {
   command -v md5sum >/dev/null 2>&1 || { echo "Command 'md5sum' required but not installed."; return -1; }
   local WATCHD_N=0.8; local WATCHD_F
-  while [ -n $1 ];
-  do
+  while [ -n $1 ]; do
     case $1 in
       usage) echo "watchd [-n <second>] -f <file> -- <command>"; return 0;;
       -n)    WATCHD_N=$2; shift 2;;
@@ -48,8 +46,7 @@ watchd () {
   local watchd_md5sum=
  (
   trap 'rm -f ${temp_file};echo -e "\nExit watchd."' EXIT
-  while true;
-  do
+  while true; do
     local watching_md5sum=`md5sum ${WATCHD_F} | cut -f1 -d' '`
     if [[ x$watching_md5sum != x$watchd_md5sum ]];then
       local temp_file=$(mktemp)
@@ -71,8 +68,7 @@ watchd () {
 
 watch2 () {
   local WATCH2_N=2;
-  while [ -n $1 ];
-  do
+  while [ -n $1 ]; do
     case $1 in
       usage) echo "watch2 -n <second> -- <command>"; return 0;;
       -n)    WATCH2_N=$2; shift 2;;
@@ -101,7 +97,7 @@ watch2 () {
 }
 
 vs () { vim ${1/\:/ +}; }
-lsp () { for f in "$@";do find `pwd` -name "$f";done; }
+lsp () { for f in "$@";do find "`pwd`" -name "$f"; done; }
 mkcd () { mkdir -p $1 && cd $1; }
 dud () { sudo du -h -d$1; }
 

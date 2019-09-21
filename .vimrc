@@ -111,8 +111,6 @@ nnoremap <leader>a :set mouse=a<cr>
 inoremap <leader>ba <><left>
 inoremap <leader>bb ()<left>
 inoremap <leader>bc {}<left>
-inoremap <leader>bl {{<space>
-inoremap <leader>br <space>}}
 inoremap <leader>bs []<left>
 inoremap <leader>db "<esc>:call MyMatchBracketJump()<cr>a"<esc>f"a
 inoremap <leader>dw "<esc>bi"<esc>wwa
@@ -156,14 +154,15 @@ augroup file_types
   autocmd FileType sql,lua noremap <leader>c I--<space><esc>
   autocmd FileType erlang,tex,cls,sty noremap <leader>c I%<space><esc>
 
-  autocmd FileType eruby,eelixir inoremap <leader>eq <%=<space><space>%><left><left><left>
-  autocmd FileType yaml inoremap <leader>eq {%=<space><space>%}<left><left><left>
   autocmd FileType eruby,eelixir inoremap <leader>ee <%<space><space>%><left><left><left>
   autocmd FileType yaml inoremap <leader>ee {%<space><space>%}<left><left><left>
-  autocmd FileType elixir inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
   autocmd FileType elixir inoremap <leader>em %{}<left>
-  autocmd FileType elixir,ruby,coffee inoremap <leader>ev #{}<left>
   autocmd FileType text inoremap <leader>el `<space><>`_<left><left><left><left><left>
+  autocmd FileType yaml inoremap <leader>el {{<space><space>}}<left><left><left>
+  autocmd FileType eruby,eelixir inoremap <leader>eq <%=<space><space>%><left><left><left>
+  autocmd FileType yaml inoremap <leader>eq {%=<space><space>%}<left><left><left>
+  autocmd FileType elixir inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
+  autocmd FileType elixir,ruby,coffee inoremap <leader>ev #{}<left>
 augroup END
 
 " Command at switching mode

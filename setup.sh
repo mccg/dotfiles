@@ -137,6 +137,7 @@ deploy_gitconfig () {
 
 deploy_tmuxconf () {
   cp .tmux.conf ~/.tmux.conf
+  tmux source-file ~/.tmux.conf
   echo "--- .tmux.conf deployed."
 }
 

@@ -124,6 +124,7 @@ nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>h <c-w>4+
 inoremap <leader>j <esc>Ji
 inoremap <leader>k <cr><up><esc>ddp<up>i
+vnoremap <leader>l "*y
 inoremap <leader>m <esc>d0i<bs><del>
 nnoremap <leader>nh <c-w>4-
 nnoremap <leader>nl :set nolist<cr>
@@ -135,6 +136,7 @@ inoremap <leader>O <esc>O
 inoremap <leader>p <esc>"*pa
 nnoremap <leader>p "*p
 vnoremap <leader>p "*p
+vnoremap <leader>r y:%s#<c-r>"##gc<left><left><left>
 nnoremap <leader>re :%s###gc<left><left><left><left>
 nnoremap <leader>rs :%s#[ ]\+$##gc<cr>
 inoremap <leader>sb '<esc>:call MyMatchBracketJump()<cr>a'<esc>f'a
@@ -147,9 +149,7 @@ inoremap <leader>u <esc>ui
 inoremap <leader>U <esc>bgUeea
 nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
-vnoremap <leader>y "*y
 vnoremap <leader>/ y/<c-r>"<cr>
-vnoremap /r y:%s#<c-r>"##gc<left><left><left>
 
 " Command vary with file's type
 augroup file_types

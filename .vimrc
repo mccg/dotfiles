@@ -81,6 +81,10 @@ function! MyMatchBracketJump()
   let dq_match = search('{\|[\| \|(', 'b')
 endfunction
 
+function! MyMatchSpaceJump()
+  let dq_match = search(' ', 'b')
+endfunction
+
 nnoremap ; :
 nnoremap sh :sh<cr>
 nnoremap ZA :wa<cr>
@@ -102,6 +106,7 @@ inoremap <c-p> <esc>pi
 nnoremap <c-p> 8zl
 nnoremap <silent> <c-u> :call smooth_scroll#up(&scroll, 25, 2)<cr>
 inoremap <c-w> <esc><c-w>
+vnoremap <leader>a y:Ack<space><c-r>"<cr>
 inoremap <leader>aa <esc>A
 inoremap <leader>ad =><space>
 inoremap <leader>al <-<space>
@@ -113,6 +118,7 @@ inoremap <leader>bb ()<left>
 inoremap <leader>bc {}<left>
 inoremap <leader>bs []<left>
 inoremap <leader>db "<esc>:call MyMatchBracketJump()<cr>a"<esc>f"a
+inoremap <leader>ds "<esc>:call MyMatchSpaceJump()<cr>a"<esc>f"a
 inoremap <leader>dw "<esc>bi"<esc>wwa
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>h <c-w>4+
@@ -128,41 +134,42 @@ inoremap <leader>o <esc>o
 inoremap <leader>O <esc>O
 inoremap <leader>p <esc>"*pa
 nnoremap <leader>p "*p
+vnoremap <leader>p "*p
 nnoremap <leader>re :%s###gc<left><left><left><left>
 nnoremap <leader>rs :%s#[ ]\+$##gc<cr>
 inoremap <leader>sb '<esc>:call MyMatchBracketJump()<cr>a'<esc>f'a
 nnoremap <leader>sl :set list<cr>
 nnoremap <leader>sp :set paste<cr>
+inoremap <leader>ss '<esc>:call MyMatchSpaceJump()<cr>a'<esc>f'a
 inoremap <leader>sw '<esc>bi'<esc>wwa
 nnoremap <leader>t :set expandtab<cr>
 inoremap <leader>u <esc>ui
 inoremap <leader>U <esc>bgUeea
 nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
-vnoremap <leader>/ y/<c-r>"<cr>
-vnoremap <leader>a y:Ack<space><c-r>"<cr>
-vnoremap /r y:%s#<c-r>"##gc<left><left><left>
 vnoremap <leader>y "*y
+vnoremap <leader>/ y/<c-r>"<cr>
+vnoremap /r y:%s#<c-r>"##gc<left><left><left>
 
 " Command vary with file's type
 augroup file_types
   autocmd!
   autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
 
-  autocmd FileType python,ruby,sh,elixir,coffee,yaml,julia,dockerfile noremap <leader>c I#<space><esc>
-  autocmd FileType cpp,php,javascript noremap <leader>c I//<space><esc>
-  autocmd FileType sql,lua noremap <leader>c I--<space><esc>
-  autocmd FileType erlang,tex,cls,sty noremap <leader>c I%<space><esc>
+  autocmd FileType python,ruby,sh,elixir,coffee,yaml,julia,dockerfile,conf noremap <leader>c I#<space><esc>
+  autocmd FileType cpp,php,javascript                                      noremap <leader>c I//<space><esc>
+  autocmd FileType sql,lua                                                 noremap <leader>c I--<space><esc>
+  autocmd FileType erlang,tex,cls,sty                                      noremap <leader>c I%<space><esc>
 
-  autocmd FileType eruby,eelixir inoremap <leader>ee <%<space><space>%><left><left><left>
-  autocmd FileType yaml inoremap <leader>ee {%<space><space>%}<left><left><left>
-  autocmd FileType elixir inoremap <leader>em %{}<left>
-  autocmd FileType text inoremap <leader>el `<space><>`_<left><left><left><left><left>
-  autocmd FileType yaml inoremap <leader>el {{<space><space>}}<left><left><left>
-  autocmd FileType eruby,eelixir inoremap <leader>eq <%=<space><space>%><left><left><left>
-  autocmd FileType yaml inoremap <leader>eq {%=<space><space>%}<left><left><left>
-  autocmd FileType elixir inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
-  autocmd FileType elixir,ruby,coffee inoremap <leader>ev #{}<left>
+  autocmd FileType eruby,eelixir                                           inoremap <leader>ee <%<space><space>%><left><left><left>
+  autocmd FileType yaml                                                    inoremap <leader>ee {%<space><space>%}<left><left><left>
+  autocmd FileType elixir                                                  inoremap <leader>em %{}<left>
+  autocmd FileType text                                                    inoremap <leader>el `<space><>`_<left><left><left><left><left>
+  autocmd FileType yaml                                                    inoremap <leader>el {{<space><space>}}<left><left><left>
+  autocmd FileType eruby,eelixir                                           inoremap <leader>eq <%=<space><space>%><left><left><left>
+  autocmd FileType yaml                                                    inoremap <leader>eq {%=<space><space>%}<left><left><left>
+  autocmd FileType elixir                                                  inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
+  autocmd FileType elixir,ruby,coffee                                      inoremap <leader>ev #{}<left>
 augroup END
 
 " Command at switching mode

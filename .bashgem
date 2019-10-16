@@ -28,6 +28,8 @@ tmux-restore-sessions () {
   echo "Restored $count sessions."
 }
 
+lightblue () { printf "\e[1m\e[94m${*}\e[0m"; }
+
 watchd () {
   command -v md5sum >/dev/null 2>&1 || { echo "Command 'md5sum' required but not installed."; return -1; }
   local WATCHD_N=0.8; local WATCHD_F
@@ -42,21 +44,25 @@ watchd () {
   done
   [ -z ${WATCHD_N} ] && { echo "Interval time must be set. Set -n <second>"; return -2; }
   [ -z ${WATCHD_F} ] && { echo "A file must be watched. Set -f <FILE>]"; return -3; }
-  let watchd_executed_times=0
+  let local exe_cnt=0
   local watchd_md5sum=
  (
   trap 'rm -f ${temp_file};echo -e "\nExit watchd."' EXIT
   while true; do
     local watching_md5sum=`md5sum ${WATCHD_F} | cut -f1 -d' '`
-    if [[ x$watching_md5sum != x$watchd_md5sum ]];then
+    if [[ "$watching_md5sum" != "$watchd_md5sum" ]];then
       local temp_file=$(mktemp)
-      let watchd_executed_times=watchd_executed_times+1
+      let local exe_cnt=exe_cnt+1
       watchd_md5sum=$watching_md5sum
-      echo "[watchd] : "`date "+%F %T %Z %z"`". Watching file: ${WATCHD_F}" >>$temp_file
-      echo "[watchd] : Command : "$*                                        >>$temp_file
-      eval $*                                                               >>$temp_file 2>&1
-      echo ""                                                               >>$temp_file
-      echo "[watchd] : ${watchd_executed_times} times executed."            >>$temp_file
+      echo "[`lightblue watchd`]: "`date "+%F %T %Z%z %s"`                >>$temp_file
+      echo "[`lightblue watchd`]: "`lightblue File`"    ⇨ ${WATCHD_F}"    >>$temp_file
+      echo "[`lightblue watchd`]: "`lightblue Command`" ⇨ "$*             >>$temp_file
+      case `uname -s` in
+        Darwin) script -q /dev/null $*                                    >>$temp_file ;;
+        Linux)  script -q /dev/null -c "$*"                               >>$temp_file ;;
+      esac
+      echo ""                                                             >>$temp_file
+      echo "[`lightblue watchd`]: `lightblue ${exe_cnt}` times executed." >>$temp_file
       clear
       cat $temp_file
       rm -f $temp_file
@@ -76,18 +82,22 @@ watch2 () {
       *)     watch2 usage; return 0;;
     esac
   done
-  let watch2_executed_times=0
+  let local exe_cnt=0
  (
   trap 'rm -f ${temp_file};echo -e "\nExit watch2."' EXIT
   while true;
   do
     local temp_file=$(mktemp)
-    let watch2_executed_times=watch2_executed_times+1
-    echo "[watch2] : "`date "+%F %T %Z %z"`". Time interval: ${WATCH2_N}s" >>$temp_file
-    echo "[watch2] : Command : ""$*"                                       >>$temp_file
-    eval ${*}                                                              >>$temp_file 2>&1
-    echo ""                                                                >>$temp_file
-    echo "[watch2] : ${watch2_executed_times} times executed."             >>$temp_file
+    let local exe_cnt=exe_cnt+1
+    echo "[`lightblue watch2`]: "`date "+%F %T %Z%z %s"`                >>$temp_file
+    echo "[`lightblue watch2`]: "`lightblue Interval`" ⇨ ${WATCH2_N}s"  >>$temp_file
+    echo "[`lightblue watch2`]: "`lightblue Command`"  ⇨ "$*            >>$temp_file
+    case `uname -s` in
+      Darwin) script -q /dev/null $*                                    >>$temp_file ;;
+      Linux)  script -q /dev/null -c "$*"                               >>$temp_file ;;
+    esac
+    echo ""                                                             >>$temp_file
+    echo "[watch2] : `lightblue ${exe_cnt}` times executed."            >>$temp_file
     clear
     cat $temp_file
     rm -f $temp_file
@@ -96,7 +106,7 @@ watch2 () {
  )
 }
 
-vs () { vim ${1/\:/ +}; }
+vs () { nvim ${1/\:/ +}; }
 lsp () { for f in "$@";do find "`pwd`" -name "$f"; done; }
 mkcd () { mkdir -p $1 && cd $1; }
 dud () { sudo du -h -d$1; }
@@ -116,9 +126,10 @@ tarx() {
     *.zip)       unzip $1        ;;
     *.Z)         uncompress $1   ;;
     *.7z)        7z x $1         ;;
-    *)           echo "don't know how to extract '$1'..." ;;
+    *)           echo "Don't know how to extract '$1'" ;;
     esac
   else
+    echo "Usage: tarx <filename>"
     echo "'$1' is not a valid file!"
   fi
 }
@@ -136,7 +147,7 @@ tarc() {
     *.rar) shift && rar $FILE $*          ;;
     esac
   else
-      echo "usage: tarc <foo.tar.gz> ./foo ./bar"
+    echo "Usage: tarc <output_filename> file1 [file2 [..]]"
   fi
 }
 
@@ -150,11 +161,9 @@ export LSCOLORS=ExfxcxdxbxegexBxFxHxHx
 export LS_COLORS='di=1;34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34:su=1;31:sg=1;35:tw=1;37:ow=1;37'
 
 export PS1="[\u@\h \w]\033[32m\]\$(parse_git_branch 2>/dev/null)\033[0m\]\n$ "
-export TERM=xterm-256color
 export SVN_EDITOR=vi
 
-alias vi='vim'
-alias view='vim -R'
+alias vi='nvim'
 alias l='ls -lha'
 alias la='ls -a'
 alias lh='ls -lh'
@@ -170,13 +179,14 @@ alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias his='history'
 
-alias vimrc='vim ~/.vimrc'
-alias vibashrc='vim ~/.bashrc'
-alias vibashprofile='vim ~/.bash_profile'
-alias vibashgem='vim ~/.bashgem'
-alias vigitconfig='vim ~/.gitconfig'
+alias vimrc='nvim ~/.vimrc'
+alias vibashrc='nvim ~/.bashrc'
+alias vibashprofile='nvim ~/.bash_profile'
+alias vibashgem='nvim ~/.bashgem'
+alias vigitconfig='nvim ~/.gitconfig'
 alias sbashrc='source ~/.bashrc'
 alias stmux='tmux source-file ~/.tmux.conf'
+alias vitmux='nvim ~/.tmux.conf'
 
 alias gti='git'
 alias ci='vim'
@@ -186,7 +196,7 @@ alias sag='/usr/bin/ssh-agent bash'
 alias sad='/usr/bin/ssh-add'
 alias rav='rsync -av'
 
-alias gitignore='vim .gitignore'
-alias gitattrbutes='vim .gitattributes'
-alias gitconfig='vim .git/config'
-alias gitmodules='vim .gitmodules'
+alias gitignore='nvim .gitignore'
+alias gitattrbutes='nvim .gitattributes'
+alias gitconfig='nvim .git/config'
+alias gitmodules='nvim .gitmodules'

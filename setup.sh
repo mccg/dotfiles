@@ -3,6 +3,7 @@
 pre_define () {
   sys_names="CentOS \
              Ubuntu \
+             Fedora \
              Raspbian \
              MacOS \
              None-of-above"
@@ -93,16 +94,25 @@ deploy_vimrc () {
     echo " |--- ~/.vimrc existed. Do you want to overwrite?"
     choose_yes_or_no
     [ $? -eq 0 ] \
-      && echo " |--- .vimrc deployment aborted." \
+      && echo " |--- vimrc aborted." \
       && return 0
   fi
   do_deploy_vimrc
   sleep 1
 }
 
-deploy_vimdict () {
-  echo " |--- deploy vim dicts:"
-  rsync -av dict ~/.vim/
+deploy_nvim () {
+  echo "--- deploy nvim config"
+  local nvim_path=~/.config/nvim
+  mkdir -p $nvim_path
+  if [ -f ${nvim_path}/init.vim ]; then
+    echo " |--- ${nvim_path}/init.vim existed. Do you want to overwrite?"
+    choose_yes_or_no
+    [ $? -eq 0 ] \
+      && echo " |--- nvim config aborted." \
+      && return 0
+  fi
+  cp nvim.init.vim ${nvim_path}/init.vim
 }
 
 do_deploy_gitconfig () {
@@ -135,8 +145,12 @@ deploy_gitconfig () {
   do_deploy_gitconfig $git_user_email_option
 }
 
-deploy_tmuxconf () {
+do_deploy_tmuxconf () {
   cp .tmux.conf ~/.tmux.conf
+}
+
+deploy_tmuxconf () {
+  do_deploy_tmuxconf
   tmux source-file ~/.tmux.conf
   echo "--- .tmux.conf deployed."
 }
@@ -163,7 +177,7 @@ main_func () {
         deploy_bashgem
         do_deploy_gitconfig
         do_deploy_vimrc
-        deploy_tmuxconf
+        do_deploy_tmuxconf
         break
         ;;
       n)
@@ -184,7 +198,7 @@ main_func () {
       v)
         # echo "-v get"
         deploy_vimrc
-        deploy_vimdict
+        deploy_nvim
         ;;
       t)
         deploy_tmuxconf

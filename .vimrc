@@ -1,6 +1,12 @@
 " <vim-plug>
 call plug#begin('~/.vim/plugged')
-Plug 'Shougo/neocomplete'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
@@ -15,38 +21,16 @@ call plug#end()
 " :PlugInstall
 " :PlugClean
 " </vim-plug>
+
+" <deoplete>
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = expand('~/.pyenv/versions/venv-3.7.0/bin/python')
+" </deoplete>
+
 " <Plugins>
 "   <nerdtree>
 let g:NERDTreeWinSize = 32
 "   </nerdtree>
-"   <neocomplete>
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 2
-set dictionary+=~/.vim/dict/ruby.dict
-set dictionary+=~/.vim/dict/elixir.dict
-set dictionary+=~/.vim/dict/rust.dict
-let g:neocomplete#sources#dictionary#dictionaries = {
-\ 'default' : '',
-\ 'ruby'    : $HOME.'/.vim/dict/ruby.dict',
-\ 'elixir'  : $HOME.'/.vim/dict/elixir.dict',
-\ 'rust'    : $HOME.'/.vim/dict/rust.dict',
-\ }
-" Select by CR
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  " For no inserting <CR> key.
-  return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-n> neocomplete#start_manual_complete()."\<C-n>"
-"   </neocomplete>
 "   <vim-airline>
 let g:airline_theme='simple'
 let g:airline_left_sep = ''
@@ -54,13 +38,18 @@ let g:airline_right_sep = ''
 "   </vim-airline>
 " </Plugins>
 
+function! SetTabs(et, n)
+  let &l:ts = a:n | let &l:sts = a:n | let &l:sw = a:n
+  if a:et == "et" | set et
+  elseif a:et == "noet" | set noet | set list
+  endif
+endfunction
+
+call SetTabs("et", 2)
 set backspace=indent,eol,start
 set number
-set ts=2
-set sts=2
-set sw=2
+set listchars=tab:│·,trail:·,extends:→
 set colorcolumn=128
-set expandtab
 set mouse=v
 set nowrap
 set hlsearch incsearch
@@ -71,6 +60,7 @@ set background=dark
 set encoding=utf-8
 
 highlight ColorColumn ctermbg=240
+language en_US
 
 syntax enable
 syntax on
@@ -146,7 +136,7 @@ inoremap <leader>ss '<esc>:call MyMatchSpaceJump()<cr>a'<esc>f'a
 inoremap <leader>sw '<esc>bi'<esc>wwa
 nnoremap <leader>t :set expandtab<cr>
 inoremap <leader>u <esc>ui
-inoremap <leader>U <esc>bgUeea
+inoremap <leader>U <esc>wbgUeea
 nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
 vnoremap <leader>/ y/<c-r>"<cr>
@@ -156,20 +146,25 @@ augroup file_types
   autocmd!
   autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
 
-  autocmd FileType python,ruby,sh,elixir,coffee,yaml,julia,dockerfile,conf noremap <leader>c I#<space><esc>
-  autocmd FileType cpp,php,javascript                                      noremap <leader>c I//<space><esc>
-  autocmd FileType sql,lua                                                 noremap <leader>c I--<space><esc>
-  autocmd FileType erlang,tex,cls,sty                                      noremap <leader>c I%<space><esc>
+  autocmd FileType python,ruby,sh               noremap <leader>c I#<space><esc>
+  autocmd FileType elixir,coffee,yaml           noremap <leader>c I#<space><esc>
+  autocmd FileType julia,dockerfile,conf        noremap <leader>c I#<space><esc>
+  autocmd FileType cpp,php,javascript,go,rust   noremap <leader>c I//<space><esc>
+  autocmd FileType sql,lua                      noremap <leader>c I--<space><esc>
+  autocmd FileType erlang,tex,cls,sty           noremap <leader>c I%<space><esc>
 
-  autocmd FileType eruby,eelixir                                           inoremap <leader>ee <%<space><space>%><left><left><left>
-  autocmd FileType yaml                                                    inoremap <leader>ee {%<space><space>%}<left><left><left>
-  autocmd FileType elixir                                                  inoremap <leader>em %{}<left>
-  autocmd FileType text                                                    inoremap <leader>el `<space><>`_<left><left><left><left><left>
-  autocmd FileType yaml                                                    inoremap <leader>el {{<space><space>}}<left><left><left>
-  autocmd FileType eruby,eelixir                                           inoremap <leader>eq <%=<space><space>%><left><left><left>
-  autocmd FileType yaml                                                    inoremap <leader>eq {%=<space><space>%}<left><left><left>
-  autocmd FileType elixir                                                  inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
-  autocmd FileType elixir,ruby,coffee                                      inoremap <leader>ev #{}<left>
+  autocmd FileType eruby,eelixir                inoremap <leader>ee <%<space><space>%><left><left><left>
+  autocmd FileType yaml                         inoremap <leader>ee {%<space><space>%}<left><left><left>
+  autocmd FileType elixir                       inoremap <leader>em %{}<left>
+  autocmd FileType text                         inoremap <leader>el `<space><>`_<left><left><left><left><left>
+  autocmd FileType yaml                         inoremap <leader>el {{<space><space>}}<left><left><left>
+  autocmd FileType eruby,eelixir                inoremap <leader>eq <%=<space><space>%><left><left><left>
+  autocmd FileType yaml                         inoremap <leader>eq {%=<space><space>%}<left><left><left>
+  autocmd FileType elixir                       inoremap <leader>es {}<esc>bbi%<esc>ww<right>i
+  autocmd FileType elixir,ruby,coffee           inoremap <leader>ev #{}<left>
+
+  autocmd FileType go,make                      :call SetTabs("noet", 4)
+  autocmd FileType python,rust                  :call SetTabs("et", 4)
 augroup END
 
 " Command at switching mode

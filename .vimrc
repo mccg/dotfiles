@@ -39,7 +39,9 @@ let g:airline_right_sep = ''
 " </Plugins>
 
 function! SetTabs(et, n)
-  let &l:ts = a:n | let &l:sts = a:n | let &l:sw = a:n
+  exec "set ts=".a:n
+  exec "set sts =".a:n
+  exec "set sw=".a:n
   if a:et == "et" | set et
   elseif a:et == "noet" | set noet | set list
   endif

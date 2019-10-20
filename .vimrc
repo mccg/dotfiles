@@ -88,6 +88,7 @@ inoremap <c-d> <esc>ddi
 nnoremap <silent> <c-d> :call smooth_scroll#down(&scroll, 25, 2)<cr>
 inoremap <c-f> <right><esc>
 nnoremap <c-f> <esc>
+tnoremap <c-f> <c-\><c-n>
 vnoremap <c-f> <esc>
 inoremap <c-j> <down>
 inoremap <c-k> <up>

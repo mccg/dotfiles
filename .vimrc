@@ -1,11 +1,13 @@
 " <vim-plug>
 call plug#begin('~/.vim/plugged')
+if $USER != "root"
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
+endif
 endif
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -50,7 +52,9 @@ endfunction
 call SetTabs("et", 2)
 set backspace=indent,eol,start
 set number
+if $USER != "root"
 set listchars=tab:│·,trail:·,extends:→
+endif
 set colorcolumn=128
 set mouse=v
 set nowrap

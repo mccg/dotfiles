@@ -144,7 +144,9 @@ nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
 vnoremap <leader>/ y/<c-r>"<cr>
 
-" Command vary with file's type
+command! -count -nargs=* TS sp | term
+
+" Autocommand vary with file's type
 augroup file_types
   autocmd!
   autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile

@@ -82,7 +82,6 @@ function! MyMatchSpaceJump()
 endfunction
 
 nnoremap ; :
-nnoremap sh :sh<cr>
 nnoremap ZA :wa<cr>
 nnoremap ZX :wqa<cr>
 nnoremap ZD :qa!<cr>
@@ -148,7 +147,8 @@ nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
 vnoremap <leader>/ y/<c-r>"<cr>
 
-command! -count -nargs=* TS sp | term
+command! -count -nargs=* TS   sp | set nonu | exe 'term' | exe 'normal! a'
+command! -count -nargs=* VTS vsp | set nonu | exe 'term' | exe 'normal! a'
 
 " Autocommand vary with file's type
 augroup file_types

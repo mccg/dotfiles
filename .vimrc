@@ -81,7 +81,12 @@ function! MyMatchSpaceJump()
   let dq_match = search(' ', 'b')
 endfunction
 
+command! -count -nargs=* TS   sp | set nonu | exe 'term' | exe 'normal! a'
+command! -count -nargs=* VTS vsp | set nonu | exe 'term' | exe 'normal! a'
+
 nnoremap ; :
+nnoremap TS :TS<cr>
+nnoremap TT :VTS<cr>
 nnoremap ZA :wa<cr>
 nnoremap ZX :wqa<cr>
 nnoremap ZD :qa!<cr>
@@ -102,6 +107,7 @@ inoremap <c-p> <esc>pi
 nnoremap <c-p> 8zl
 nnoremap <silent> <c-u> :call smooth_scroll#up(&scroll, 25, 2)<cr>
 inoremap <c-w> <esc><c-w>
+tnoremap <c-w> <c-\><c-n><c-w>
 vnoremap <leader>a y:Ack<space><c-r>"<cr>
 inoremap <leader>aa <esc>A
 inoremap <leader>ad =><space>
@@ -146,9 +152,6 @@ inoremap <leader>U <esc>wbgUeea
 nnoremap <leader>v :set mouse=v<cr>
 nnoremap <leader>w <c-w>8>
 vnoremap <leader>/ y/<c-r>"<cr>
-
-command! -count -nargs=* TS   sp | set nonu | exe 'term' | exe 'normal! a'
-command! -count -nargs=* VTS vsp | set nonu | exe 'term' | exe 'normal! a'
 
 " Autocommand vary with file's type
 augroup file_types

@@ -177,6 +177,7 @@ augroup file_types
 
   autocmd FileType go,make                      :call SetTabs("noet", 4)
   autocmd FileType python,rust                  :call SetTabs("et", 4)
+  autocmd FileType css,scss                     :call SetTabs("et", 4)
 augroup END
 
 " Command at switching mode

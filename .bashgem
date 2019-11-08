@@ -50,7 +50,7 @@ watchd () {
   trap 'rm -f ${temp_file};echo -e "\nExit watchd."' EXIT
   while true; do
     local watching_md5sum=`md5sum ${WATCHD_F} | cut -f1 -d' '`
-    if [[ "$watching_md5sum" != "$watchd_md5sum" ]];then
+    if [[ "$watching_md5sum" != "$watchd_md5sum" ]]; then
       local temp_file=$(mktemp)
       let local exe_cnt=exe_cnt+1
       watchd_md5sum=$watching_md5sum
@@ -112,7 +112,7 @@ mkcd () { mkdir -p $1 && cd $1; }
 dud () { sudo du -h -d$1; }
 
 tarx() {
-  if [ -f $1 ] ; then
+  if [ -f $1 ]; then
     case $1 in
     *.tar.bz2)   tar -xvjf $1    ;;
     *.tar.gz)    tar -xvzf $1    ;;
@@ -135,7 +135,7 @@ tarx() {
 }
 
 tarc() {
-  if [ -n "$1" ] ; then
+  if [ -n "$1" ]; then
     FILE=$1
     case $FILE in
     *.tar) shift && tar -cf $FILE $*      ;;
@@ -189,7 +189,8 @@ alias stmux='tmux source-file ~/.tmux.conf'
 alias vitmux='nvim ~/.tmux.conf'
 
 alias gti='git'
-alias ci='vim'
+alias ci='nvim'
+alias cho='chmod'
 
 alias pingbaidu="ping www.baidu.com"
 alias sag='/usr/bin/ssh-agent bash'

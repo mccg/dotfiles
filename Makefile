@@ -4,7 +4,7 @@ usage:
 	@echo "Usage: "
 	@echo "        make all"
 	@echo "        make vimrc"
-	@echo "        make vimdict"
+	@echo "        make v g"
 
 b:
 	cp ~/.bashgem .

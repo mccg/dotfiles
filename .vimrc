@@ -19,6 +19,7 @@ Plug 'mccg/vim-elixir', { 'for': 'elixir' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+Plug 'mattn/emmet-vim'
 call plug#end()
 " :PlugInstall
 " :PlugClean

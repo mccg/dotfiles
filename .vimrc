@@ -27,7 +27,7 @@ call plug#end()
 
 " <deoplete>
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = expand('~/.pyenv/versions/venv-3.7.0/bin/python')
+let g:python3_host_prog = expand('~/.pyenv/versions/3.7.0/bin/python')
 " </deoplete>
 
 " <Plugins>
@@ -51,11 +51,11 @@ function! SetTabs(et, n)
 endfunction
 
 call SetTabs("et", 2)
+scriptencoding utf-8
+set encoding=utf-8
+set listchars=tab:│·,trail:·,extends:→
 set backspace=indent,eol,start
 set number
-if $USER != "root"
-set listchars=tab:│·,trail:·,extends:→
-endif
 set colorcolumn=128
 set mouse=v
 set nowrap
@@ -64,7 +64,6 @@ set showmode showmatch
 set autoindent
 set smartindent
 set background=dark
-set encoding=utf-8
 
 highlight ColorColumn ctermbg=240
 language en_US

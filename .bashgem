@@ -106,11 +106,6 @@ watch2 () {
  )
 }
 
-vs () { nvim ${1/\:/ +}; }
-lsp () { for f in "$@";do find "`pwd`" -name "$f"; done; }
-mkcd () { mkdir -p $1 && cd $1; }
-dud () { sudo du -h -d$1; }
-
 tarx() {
   if [ -f $1 ]; then
     case $1 in
@@ -151,9 +146,13 @@ tarc() {
   fi
 }
 
+dud () { sudo du -h -d$1; }
+mkcd () { mkdir -p $1 && cd $1; }
 parse_git_branch () { git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
-
+lsp () { for f in "$@";do find "`pwd`" -name "$f"; done; }
 senv () { export `cat $1`; }
+svim () { command -v nvim >/dev/null 2>&1 && printf nvim || printf vim; }
+vs () { `svim` ${1/\:/ +}; }
 
 # BSD
 export LSCOLORS=ExfxcxdxbxegexBxFxHxHx
@@ -163,7 +162,8 @@ export LS_COLORS='di=1;34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34:su=1;31:sg=1;35
 export PS1="[\u@\h \w]\033[32m\]\$(parse_git_branch 2>/dev/null)\033[0m\]\n$ "
 export SVN_EDITOR=vi
 
-alias vi='nvim'
+
+alias vi='`svim`'
 alias l='ls -lha'
 alias la='ls -a'
 alias lh='ls -lh'
@@ -179,17 +179,17 @@ alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias his='history'
 
-alias vimrc='nvim ~/.vimrc'
-alias vibashrc='nvim ~/.bashrc'
-alias vibashprofile='nvim ~/.bash_profile'
-alias vibashgem='nvim ~/.bashgem'
-alias vigitconfig='nvim ~/.gitconfig'
+alias vimrc='`svim` ~/.vimrc'
+alias vibashrc='`svim` ~/.bashrc'
+alias vibashprofile='`svim` ~/.bash_profile'
+alias vibashgem='`svim` ~/.bashgem'
+alias vigitconfig='`svim` ~/.gitconfig'
 alias sbashrc='source ~/.bashrc'
 alias stmux='tmux source-file ~/.tmux.conf'
-alias vitmux='nvim ~/.tmux.conf'
+alias vitmux='`svim` ~/.tmux.conf'
 
 alias gti='git'
-alias ci='nvim'
+alias ci='`svim`'
 alias cho='chmod'
 
 alias pingbaidu="ping www.baidu.com"
@@ -197,7 +197,7 @@ alias sag='/usr/bin/ssh-agent bash'
 alias sad='/usr/bin/ssh-add'
 alias rav='rsync -av'
 
-alias gitignore='nvim .gitignore'
-alias gitattrbutes='nvim .gitattributes'
-alias gitconfig='nvim .git/config'
-alias gitmodules='nvim .gitmodules'
+alias gitignore='`svim` .gitignore'
+alias gitattrbutes='`svim` .gitattributes'
+alias gitconfig='`svim` .git/config'
+alias gitmodules='`svim` .gitmodules'

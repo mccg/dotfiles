@@ -74,11 +74,7 @@ syntax on
 let mapleader=','
 
 function! MyMatchBracketJump()
-  let dq_match = search('{\|[\| \|(', 'b')
-endfunction
-
-function! MyMatchSpaceJump()
-  let dq_match = search(' ', 'b')
+  let dq_match = search('{\|[\|(', 'b')
 endfunction
 
 command! -count -nargs=* TS   sp | set nonu | exe 'term' | exe 'normal! a'
@@ -120,10 +116,13 @@ inoremap <leader>bb ()<left>
 inoremap <leader>bc {}<left>
 inoremap <leader>bs []<left>
 inoremap <leader>db "<esc>:call MyMatchBracketJump()<cr>a"<esc>f"a
-inoremap <leader>ds "<esc>:call MyMatchSpaceJump()<cr>a"<esc>f"a
+inoremap <leader>ds "<esc>Bi"<esc>Ea
 inoremap <leader>dw "<esc>bi"<esc>wwa
 nnoremap <leader>e :source $MYVIMRC<cr>
 nnoremap <leader>h <c-w>4+
+nnoremap <leader>ff :let @* = expand("%:p")<cr>
+nnoremap <leader>fn :let @* = expand("%:t")<cr>
+nnoremap <leader>fr :let @* = expand("%")<cr>
 inoremap <leader>j <esc>Ji
 inoremap <leader>k <cr><up><esc>ddp<up>i
 vnoremap <leader>l "*y
@@ -144,7 +143,7 @@ nnoremap <leader>rs :%s#[ ]\+$##gc<cr>
 inoremap <leader>sb '<esc>:call MyMatchBracketJump()<cr>a'<esc>f'a
 nnoremap <leader>sl :set list<cr>
 nnoremap <leader>sp :set paste<cr>
-inoremap <leader>ss '<esc>:call MyMatchSpaceJump()<cr>a'<esc>f'a
+inoremap <leader>ss '<esc>Bi'<esc>Ea
 inoremap <leader>sw '<esc>bi'<esc>wwa
 nnoremap <leader>t :set expandtab<cr>
 inoremap <leader>u <esc>ui
@@ -158,7 +157,7 @@ augroup file_types
   autocmd!
   autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
 
-  autocmd FileType python,ruby,sh               noremap <leader>c I#<space><esc>
+  autocmd FileType python,ruby,sh,make          noremap <leader>c I#<space><esc>
   autocmd FileType elixir,coffee,yaml           noremap <leader>c I#<space><esc>
   autocmd FileType julia,dockerfile,conf        noremap <leader>c I#<space><esc>
   autocmd FileType cpp,php,javascript,go,rust   noremap <leader>c I//<space><esc>
@@ -177,7 +176,7 @@ augroup file_types
 
   autocmd FileType go,make                      :call SetTabs("noet", 4)
   autocmd FileType python,rust                  :call SetTabs("et", 4)
-  autocmd FileType css,scss                     :call SetTabs("et", 4)
+  autocmd FileType css,scss,javascript          :call SetTabs("et", 4)
   autocmd FileType yaml                         :call SetTabs("et", 2)
 augroup END
 

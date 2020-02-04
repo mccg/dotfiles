@@ -16,6 +16,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'mccg/vim-elixir', { 'for': 'elixir' }
+Plug 'slashmili/alchemist.vim'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }

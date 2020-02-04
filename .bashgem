@@ -196,6 +196,7 @@ alias pingbaidu="ping www.baidu.com"
 alias sag='/usr/bin/ssh-agent bash'
 alias sad='/usr/bin/ssh-add'
 alias rav='rsync -av'
+alias dps='docker ps -a --format "table {{.ID}}\\t{{.Names}}\\t{{.Status}}\\t{{.Ports}}"'
 
 alias gitignore='`svim` .gitignore'
 alias gitattrbutes='`svim` .gitattributes'
